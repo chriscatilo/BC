@@ -1,0 +1,524 @@
+﻿<div ng-show="vm.showView" ng-controller="IncidentCtrl">
+<section class="app-header navbar navbar-fixed-top" style="top: 69px">
+    <div class="container">
+        <menu-tabs menu-items="vm.config.app.menu" menu-active="vm.config.activeMenu"
+                   tab-items="vm.config.app.incidentTabs" tab-active="vm.config.activeTab"
+                   tab-param="vm.readModel.id" show-tabs="vm.readModel.id" visible-tabs="vm.config.app.visibleIncidentTabs" menus-visible="vm.config.menusVisible"></menu-tabs>
+    </div>
+</section>
+<div class="headliner" style="padding-top: 50px;">
+    <div class="container">
+        <div class="col-lg-12">
+            <h2 ng-bind="vm.config.form.label"></h2>
+            <server-validation-errors errors="vm.serverValidationErrors"></server-validation-errors>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+            <input-text-read-only label="vm.schema.formalId.label"
+                                  ng-model="vm.readModel.formalId">
+            </input-text-read-only>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+            <input-text-read-only label="vm.schema.loggedByUser.label"
+                                  ng-model="vm.readModel.loggedByUser">
+            </input-text-read-only>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+            <input-text-read-only label="vm.schema.createDate.label"
+                                  ng-model="vm.createDate">
+            </input-text-read-only>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+            <input-text-read-only label="vm.schema.ieltsRegion.label" ng-model="vm.readModel.ieltsRegion">
+            </input-text-read-only>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+            <input-text-read-only label="vm.schema.status.label"
+                                  ng-model="vm.readModel.status">
+            </input-text-read-only>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+<form name="viewForm" novalidate>
+<fieldset ng-form="details">
+    <legend>
+        <span ng-bind="vm.config.form.details.label"></span>
+        <client-validation-errors form="details" errors="vm.config.form.details.errors"></client-validation-errors>
+    </legend>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-controller="TestCentreLocationCtrl">
+
+        <div ng-if="!vm.schema.testCentre.notApplicable">
+            <input-select ng-if="!vm.schema.testCentre.readonly"
+                          ng-form="testCentre"
+                          ng-model="vm.testCentre"
+                          config="vm.schema.testCentre"
+                          options="vm.resources.testCentres"
+                          option-exp="item.code + ' ' + item.name for item in options | orderBy:'code' track by item.code ">
+            </input-select>
+            <input-text-read-only ng-if="vm.schema.testCentre.readonly"
+                                  ng-model="vm.readModel.testCentre"
+                                  label="vm.schema.testCentre.label">
+            </input-text-read-only>
+        </div>
+
+        <div ng-if="!vm.schema.testLocation.notApplicable">
+            <input-select ng-if="!vm.schema.testLocation.readonly"
+                          ng-form="testLocation"
+                          ng-model="vm.testLocation"
+                          config="vm.schema.testLocation"
+                          options="vm.testCentre.children"
+                          option-exp="item.name for item in options | orderBy:'name' track by item.code ">
+            </input-select>
+            <input-text-read-only ng-if="vm.schema.testLocation.readonly"
+                                  ng-model="vm.readModel.testLocation"
+                                  label="vm.schema.testLocation.label">
+            </input-text-read-only>
+        </div>
+
+        <div ng-if="!vm.schema.product.notApplicable">
+            <input-select ng-if="!vm.schema.product.readonly"
+                          ng-form="product"
+                          ng-model="vm.product"
+                          config="vm.schema.product"
+                          options="vm.resources.products"
+                          option-exp="item.name for item in options | orderBy:'name' track by item.code ">
+            </input-select>
+            <input-text-read-only ng-if="vm.schema.product.readonly"
+                                  ng-model="vm.readModel.product"
+                                  label="vm.schema.product.label">
+            </input-text-read-only>
+        </div>
+
+        <div ng-if="!vm.schema.raisedBy.notApplicable">
+            <input-text ng-if="!vm.schema.raisedBy.readonly"
+                        ng-form="raisedby"
+                        ng-model="vm.writeModel.raisedBy"
+                        config="vm.schema.raisedBy">
+            </input-text>
+            <input-text-read-only ng-if="vm.schema.raisedBy.readonly"
+                                  ng-model="vm.readModel.raisedBy"
+                                  label="vm.schema.raisedBy.label">
+            </input-text-read-only>
+        </div>
+
+        <div ng-if="!vm.schema.testDate.notApplicable">
+            <input-date ng-if="!vm.schema.testDate.readonly"
+                        ng-form="testDate"
+                        ng-model="vm.writeModel.testDate"
+                        config="vm.schema.testDate">
+            </input-date>
+            <input-text-read-only ng-if="vm.schema.testDate.readonly"
+                                  ng-model="vm.readModel.testDate"
+                                  label="vm.schema.testDate.label">
+            </input-text-read-only>
+        </div>
+
+        <div ng-if="!vm.schema.noOfCandidates.notApplicable">
+            <input-text ng-if="!vm.schema.noOfCandidates.readonly"
+                        ng-form="noOfCandidates"
+                        ng-model="vm.writeModel.noOfCandidates"
+                        config="vm.schema.noOfCandidates">
+            </input-text>
+        </div>
+        <input-text-read-only ng-if="vm.schema.noOfCandidates.readonly"
+                              ng-model="vm.readModel.noOfCandidates"
+                              label="vm.schema.noOfCandidates.label">
+        </input-text-read-only>
+
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-controller="IncidentClassificationCtrl">
+
+        <div ng-if="!vm.schema.category.notApplicable">
+            <input-select ng-if="!vm.schema.category.readonly"
+                          ng-form="category"
+                          ng-model="vm.category"
+                          config="vm.schema.category"
+                          options="vm.resources.categories"
+                          option-exp="item.name for item in options | orderBy:'name' track by item.code">
+            </input-select>
+            <input-text-read-only ng-if="vm.schema.category.readonly"
+                                  ng-model="vm.readModel.category"
+                                  label="vm.schema.category.label">
+            </input-text-read-only>
+        </div>
+
+        <div ng-if="!vm.schema.subCategory.notApplicable">
+            <input-select ng-if="!vm.schema.subCategory.readonly"
+                          ng-form="subCategory"
+                          ng-model="vm.subCategory"
+                          config="vm.schema.subCategory"
+                          options="vm.category.children"
+                          option-exp="item.name for item in options track by item.code">
+            </input-select>
+            <input-text-read-only ng-if="vm.schema.subCategory.readonly"
+                                  ng-model="vm.readModel.subCategory"
+                                  label="vm.schema.subCategory.label">
+            </input-text-read-only>
+        </div>
+
+        <div ng-if="!vm.schema.riskRating.notApplicable">
+            
+            <input-select ng-if="!vm.schema.riskRating.readonly"
+                          ng-form="riskRating"
+                          ng-model="vm.writeModel.riskRating"
+                          config="vm.schema.riskRating"
+                          options="vm.resources.riskRatings"
+                          option-exp="item.code as item.name for item in options"
+                          exclude-default-option="true">
+            </input-select>
+            <input-text-read-only ng-if="vm.schema.riskRating.readonly"
+                                  ng-model="vm.readModel.riskRating"
+                                  label="vm.schema.riskRating.label">
+            </input-text-read-only>
+        </div>
+        
+
+        <div ng-if="!vm.schema.residualRiskRating.notApplicable">
+            <input-text-read-only ng-if="vm.schema.residualRiskRating.readonly"
+                                  ng-model="vm.readModel.residualRiskRating"
+                                  label="vm.schema.residualRiskRating.label">
+            </input-text-read-only>
+        </div>
+
+        <div ng-if="!vm.schema.incidentDate.notApplicable">
+            <input-date ng-if="!vm.schema.incidentDate.readonly"
+                        ng-form="incidentDate"
+                        ng-model="vm.writeModel.incidentDate"
+                        config="vm.schema.incidentDate">
+            </input-date>
+            <input-date-read-only ng-if="vm.schema.incidentDate.readonly"
+                                  ng-model="vm.readModel.incidentDate"
+                                  label="vm.schema.incidentDate.label">
+            </input-date-read-only>
+        </div>
+
+        <div ng-if="!vm.schema.incidentTime.notApplicable">
+            <input-time ng-if="!vm.schema.incidentTime.readonly"
+                        ng-form="incidentTime"
+                        ng-model="vm.writeModel.incidentTime"
+                        config="vm.schema.incidentTime">
+            </input-time>
+            <input-time-read-only ng-if="vm.schema.incidentTime.readonly"
+                                  ng-model="vm.readModel.incidentTime"
+                                  label="vm.schema.incidentTime.label">
+            </input-time-read-only>
+        </div>
+
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div ng-if="!vm.schema.description.notApplicable" class="description">
+            <text-area ng-if="!vm.schema.description.readonly"
+                       ng-form="incidentDescription"
+                       ng-model="vm.writeModel.description"
+                       config="vm.schema.description">
+            </text-area>
+            <input-text-read-only ng-if="vm.schema.description.readonly"
+                                  ng-model="vm.readModel.description"
+                                  label="vm.schema.description.label">
+            </input-text-read-only>
+        </div>
+        <div ng-if="!vm.schema.immediateActionTaken.notApplicable" class="description">
+            <text-area ng-if="!vm.schema.immediateActionTaken.readonly"
+                       ng-form="immediateActionTaken"
+                       ng-model="vm.writeModel.immediateActionTaken"
+                       config="vm.schema.immediateActionTaken">
+            </text-area>
+            <input-text-read-only ng-if="vm.schema.immediateActionTaken.readonly"
+                                  ng-model="vm.readModel.immediateActionTaken"
+                                  label="vm.schema.immediateActionTaken.label">
+            </input-text-read-only>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="candidates" ng-show="vm.candidateCount > 0 || vm.addCandidateUrl">
+    <legend>
+        <span ng-bind="vm.config.form.candidates.label"></span>
+    </legend>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+        <p ng-bind="vm.config.form.candidates.sectionCopy"></p>
+        <button class="btn btn-info addCandidate" ng-if="vm.addCandidateUrl" ng-click="showAddCandidateForm(vm.addCandidateUrl)" ng-bind="vm.config.form.candidates.addCandidateButton"></button>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="vm.candidateCount > 0">
+        <kendo-grid k-data-source="candidateDataSource" options="candidateGridOptions"></kendo-grid>
+        <p class="notice" ng-bind="vm.config.form.candidates.notice" ng-if="vm.addCandidateUrl"></p>
+    </div>
+</fieldset>
+<fieldset ng-form="referringOrg" ng-controller="IncidentReferringOrgCtrl" ng-if="!vm.schema.referringOrgType.notApplicable">
+    <legend>
+        <span ng-bind="vm.config.form.referringOrg.label"></span>
+        <client-validation-errors form="referringOrg" errors="vm.config.form.referringOrg.errors"></client-validation-errors>
+    </legend>
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+    <div ng-if="!vm.schema.referringOrgType.notApplicable">
+        <input-select ng-if="!vm.schema.referringOrgType.readonly"
+                      ng-form="referringOrgType"
+                      ng-model="vm.referringOrgType"
+                      options="vm.resources.orgTypes"
+                      config="vm.schema.referringOrgType"
+                      option-exp="item.name for item in options | orderBy : 'name' track by item.code">
+        </input-select>
+        <input-text-read-only ng-if="vm.schema.referringOrgType.readonly"
+                              ng-model="vm.readModel.referringOrgType"
+                              label="vm.schema.referringOrgType.label">
+        </input-text-read-only>
+
+            <div ng-if="!vm.schema.referringOrgCountry.notApplicable">
+                <input-select ng-if="!vm.schema.referringOrgCountry.readonly"
+                              ng-form="referringOrgCountry"
+                              ng-model="vm.writeModel.referringOrgCountry"
+                              config="vm.schema.referringOrgCountry"
+                              options="vm.resources.countries"
+                              option-exp="item.code as item.name for item in options | orderBy:'name'">
+                </input-select>
+                <input-text-read-only ng-if="vm.schema.referringOrgCountry.readonly"
+                                      ng-model="vm.readModel.referringOrgCountry"
+                                      label="vm.schema.referringOrgCountry.label">
+                </input-text-read-only>
+    </div>
+
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+    <div ng-if="!vm.schema.referringOrganisation.notApplicable">
+        <input-select ng-if="!vm.schema.referringOrganisation.readonly"
+                      ng-form="referringOrganisation"
+                      ng-model="vm.referringOrganisation"
+                      options="vm.referringOrgType.organisations"
+                      config="vm.schema.referringOrganisation"
+                          option-exp="item.name for item in options | orderBy : 'name' track by item.code"
+                          ng-disabled="vm.refOrgModel.referringOrgType == 'NONRO'">
+        </input-select>
+
+        <input-text-read-only ng-if="vm.schema.referringOrganisation.readonly"
+                                  ng-model="vm.readModel.referringOrgName"
+                                  label="vm.schema.referringOrgName.label">
+            </input-text-read-only>
+        </div>
+
+        <div ng-if="!vm.schema.referringOrganisation.notApplicable">
+            <input-text ng-if="!vm.schema.referringOrganisation.readonly"
+                        ng-form="referringOrgName"
+                        ng-model="vm.refOrgModel.referringOrgName"
+                        config="vm.schema.referringOrgName"
+                        ng-disabled="vm.refOrgModel.referringOrganisation !== 'OTHER'">
+            </input-text>
+        </div>
+
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+        <div ng-if="!vm.schema.referringOrgSurname.notApplicable">
+            <input-text ng-if="!vm.schema.referringOrgSurname.readonly"
+                        ng-form="referringOrgSurname"
+                        ng-model="vm.writeModel.referringOrgSurname"
+                        config="vm.schema.referringOrgSurname">
+            </input-text>
+            <input-text-read-only ng-if="vm.schema.referringOrgSurname.readonly"
+                                  ng-model="vm.readModel.referringOrgSurname"
+                                  label="vm.schema.referringOrgSurname.label">
+            </input-text-read-only>
+        </div>
+
+
+        <div ng-if="!vm.schema.referringOrgFirstnames.notApplicable">
+            <input-text ng-if="!vm.schema.referringOrgFirstnames.readonly"
+                        ng-form="referringOrgFirstnames"
+                        ng-model="vm.writeModel.referringOrgFirstnames"
+                        config="vm.schema.referringOrgFirstnames">
+            </input-text>
+            <input-text-read-only ng-if="vm.schema.referringOrgFirstnames.readonly"
+                                  ng-model="vm.readModel.referringOrgFirstnames"
+                                  label="vm.schema.referringOrgFirstnames.label">
+            </input-text-read-only>
+        </div>
+
+        
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div ng-if="!vm.schema.referringOrgJobTitle.notApplicable">
+            <input-text ng-if="!vm.schema.referringOrgJobTitle.readonly"
+                        ng-form="referringOrgJobTitle"
+                        ng-model="vm.writeModel.referringOrgJobTitle"
+                        config="vm.schema.referringOrgJobTitle">
+            </input-text>
+            <input-text-read-only ng-if="vm.schema.referringOrgJobTitle.readonly"
+                                  ng-model="vm.readModel.referringOrgJobTitle"
+                                  label="vm.schema.referringOrgJobTitle.label">
+            </input-text-read-only>
+        </div>
+
+        <div ng-if="!vm.schema.referringOrgEmail.notApplicable">
+            <input-text ng-if="!vm.schema.referringOrgEmail.readonly"
+                        ng-form="referringOrgEmail"
+                        ng-model="vm.writeModel.referringOrgEmail"
+                        config="vm.schema.referringOrgEmail">
+            </input-text>
+            <input-text-read-only ng-if="vm.schema.referringOrgEmail.readonly"
+                                  ng-model="vm.readModel.referringOrgEmail"
+                                  label="vm.schema.referringOrgEmail.label">
+            </input-text-read-only>
+        </div>
+    </div>
+</fieldset>
+    <fieldset ng-form="ukvi" ng-if="vm.authorisation.incident.canViewUkvi && ((!vm.product && vm.readModel.isUkvi) || vm.product.isUkvi)">
+        <legend>
+            <span ng-bind="vm.config.form.ukvi.label"></span>
+            <client-validation-errors form="ukvi" errors="vm.config.form.ukvi.errors"></client-validation-errors>
+        </legend>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-if="vm.authorisation.incident.canViewUkvi || vm.authorisation.incident.canSetUkvi">
+            <div>
+                <input-yes-no ng-if="(!vm.schema.reportUkvi.readonly) && vm.authorisation.incident.canSetUkvi"
+                              ng-form="reportUkvi"
+                              ng-model="vm.writeModel.reportUkvi"
+                              config="vm.schema.reportUkvi">
+                </input-yes-no>
+                <input-yes-no-read-only ng-if="vm.schema.reportUkvi.readonly"
+                                        ng-model="vm.readModel.reportUkvi"
+                                        label="vm.schema.reportUkvi.label"
+                                        config="vm.schema.reportUkvi">
+                </input-yes-no-read-only>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-if="vm.authorisation.incident.canSetUkvi && (!vm.writeModel || vm.writeModel.reportUkvi)">
+            <div>
+                <input-date ng-if="(!vm.schema.ukviFollowUpDate.readonly) && vm.authorisation.incident.canSetUkvi"
+                            ng-form="ukviFollowUpDate"
+                            ng-model="vm.writeModel.ukviFollowUpDate"
+                            config="vm.schema.ukviFollowUpDate">
+                </input-date>
+                <input-date-read-only ng-if="vm.schema.ukviFollowUpDate.readonly"
+                                      ng-model="vm.readModel.ukviFollowUpDate"
+                                      label="vm.schema.ukviFollowUpDate.label">
+                </input-date-read-only>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-if="vm.authorisation.incident.canSetUkvi && vm.showUkviImmediateReport">
+            <div>
+                <input-select ng-if="(!vm.schema.ukviImmediateReportType.readonly) && !vm.ukviImmediateReportTypeReadonly"
+                              ng-form="ukviimmediatereporttype"
+                              ng-model="vm.writeModel.ukviImmediateReportType"
+                              config="vm.schema.ukviImmediateReportType"
+                              options="vm.resources.ukviImmediateReportTypes"
+                              option-exp="item.code as item.name for item in options | orderBy:'name'">
+                </input-select>
+                <input-date-read-only ng-if="vm.schema.ukviImmediateReportType.readonly || vm.ukviImmediateReportTypeReadonly"
+                                      ng-model="vm.readModel.ukviImmediateReportType"
+                                      label="vm.schema.ukviImmediateReportType.label">
+                </input-date-read-only>
+            </div>
+        </div>
+    </fieldset>
+</form>
+</div>
+<div available-commands="vm.availableCommands"
+     view-form="viewForm"
+     command-actions="vm.commands"
+     command-buttons="vm.config.app.commandButtons"
+     enabled-counts="vm.commandCounts">
+</div>
+
+    <workflowform ng-if="vm.modeIsWorkflow"
+                  mode="vm.mode"
+                  class="animate-if"
+                  incident-model="vm.writeModel"
+                  incident-read-model="vm.readModel"
+                  resources="vm.resources"
+                  command-links="vm.commandLinks"
+                  on-success="onCommandSuccess"
+                  on-error="onCommandError"
+                  on-cancel="vm.mode = 'incident'">
+    </workflowform>
+
+<form name="candidateForm" novalidate ng-show="candidateFormVisible" class="candidateForm">
+    <div class="overlay" ng-click="closeCandidateForm()"></div>
+    <section class="site-footer">
+        <fieldset class="container">
+            <legend>
+                <span ng-bind="vm.config.form.candidate.label"></span>
+                <client-validation-errors form="candidateForm" errors="vm.config.form.candidate.errors"></client-validation-errors>
+                <server-validation-errors errors="vm.candidateServerValidationErrors"></server-validation-errors>
+            </legend>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <input-text ng-form="number"
+                            ng-model="vm.candidateModel.number"
+                            config="vm.schema.candidate.candidateNumber">
+                </input-text>
+                <input-text ng-form="surname"
+                            ng-model="vm.candidateModel.surname"
+                            config="vm.schema.candidate.candidateSurname">
+                </input-text>
+                <input-text ng-form="firstnames"
+                            ng-model="vm.candidateModel.firstnames"
+                            config="vm.schema.candidate.candidateFirstnames">
+                </input-text>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <input-select ng-form="nationality"
+                              ng-model="vm.candidateModel.nationality"
+                              options="vm.resources.countries"
+                              option-exp="item.code as item.name for item in options | orderBy:'name'"
+                              config="vm.schema.candidate.candidateNationality">
+                </input-select>
+                <text-area ng-form="address" class="address"
+                           ng-model="vm.candidateModel.address"
+                           config="vm.schema.candidate.candidateAddress">
+                </text-area>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <input-date ng-form="dateOfBirth"
+                            ng-model="vm.candidateModel.dateOfBirth"
+                            config="vm.schema.candidate.candidateDateOfBirth">
+                </input-date>
+                <input-yes-no ng-form="gender"
+                              ng-model="vm.candidateModel.gender"
+                              config="vm.schema.candidate.candidateGender">
+                </input-yes-no>
+                <input-text ng-form="idDocumentNumber"
+                            ng-model="vm.candidateModel.idDocumentNumber"
+                            config="vm.schema.candidate.candidateIdDocumentNumber">
+                </input-text>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <input-text ng-form="trfNumber"
+                            ng-model="vm.candidateModel.trfNumber"
+                            config="vm.schema.candidate.candidateTrfNumber">
+                </input-text>
+
+                <input-date ng-form="dateTrfCancelled"
+                            ng-model="vm.candidateModel.dateTrfCancelled"
+                            config="vm.schema.candidate.candidateDateTrfCancelled">
+                </input-date>
+                <input-text ng-form="ukviRefNumber"
+                            ng-model="vm.candidateModel.ukviRefNumber"
+                            config="vm.schema.candidate.candidateUKVIRefNumber">
+                </input-text>
+            </div>
+        </fieldset>
+
+        <div class="commands">
+            <div class="container">
+                <div class="col-lg-12">
+                    <button class="btn btn-info btn-lg" ng-click="saveCandidate.action()" ng-bind="saveCandidate.label" ng-disabled="candidateForm.$pristine"></button>
+                    <button class="btn btn-warning btn-cancel btn-lg" ng-click="closeCandidateForm()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+</div>
+
+<script id="delete-confirmation" type="text/x-kendo-template">
+    <div class="modal-body">
+        <p class="delete-message">Are you sure you want to delete this incident?</p>
+    </div>
+    <div class="footer">
+        <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-default delete-cancel">No</button>
+    </div>
+</script>

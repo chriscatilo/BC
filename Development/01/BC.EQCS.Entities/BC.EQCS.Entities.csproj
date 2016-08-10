@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B5BCFBF3-5EF9-40FB-B624-85FA89089A5D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BC.EQCS.Entities</RootNamespace>
+    <AssemblyName>BC.EQCS.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|AnyCPU'">
+    <OutputPath>bin\Development\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember">
+      <HintPath>..\packages\FastMember.1.0.0.11\lib\net40\FastMember.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityFactory.cs" />
+    <Compile Include="IEntityFactory.cs" />
+    <Compile Include="Models\DocumentStorage.cs" />
+    <Compile Include="Models\IncidentActionListing.cs" />
+    <Compile Include="Models\IncidentCandidate.cs" />
+    <Compile Include="Models\IncidentActivityListingView.cs" />
+    <Compile Include="Models\IncidentCandidateView.cs" />
+    <Compile Include="Models\IncidentView.cs" />
+    <Compile Include="Models\ApplicationAsset.cs" />
+    <Compile Include="Models\AdminUnit.cs" />
+    <Compile Include="Models\AdminUnitType.cs" />
+    <Compile Include="Models\ApplicationRole.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\IncidentClass.cs" />
+    <Compile Include="Models\IncidentClassType.cs" />
+    <Compile Include="Models\Mapping\DocumentStorageMap.cs" />
+    <Compile Include="Models\Mapping\UkviImmediateReportTypeMap.cs" />
+    <Compile Include="Models\Mapping\IncidentCandidateViewMap.cs" />
+    <Compile Include="Models\Mapping\IncidentActionListingMap.cs" />
+    <Compile Include="Models\Mapping\IncidentActivityListingViewMap.cs" />
+    <Compile Include="Models\Mapping\NotificationMessageMap.cs" />
+    <Compile Include="Models\Mapping\NotificationMessageTemplateMap.cs" />
+    <Compile Include="Models\Mapping\NotificationEventMap.cs" />
+    <Compile Include="Models\Mapping\NotificationMappingMap.cs" />
+    <Compile Include="Models\Mapping\ResidualRiskRatingMap.cs" />
+    <Compile Include="Models\Mapping\UserRoleToClassToSchemaKeyMap.cs" />
+    <Compile Include="Models\Mapping\IncidentClassType.cs" />
+    <Compile Include="Models\Mapping\IncidentClassMap.cs" />
+    <Compile Include="Models\Mapping\IncidentCandidateMap.cs" />
+    <Compile Include="Models\Mapping\IncidentViewMap.cs" />
+    <Compile Include="Models\NotificationMessage.cs" />
+    <Compile Include="Models\NotificationMessageTemplate.cs" />
+    <Compile Include="Models\NotificationEvent.cs" />
+    <Compile Include="Models\NotificationMapping.cs" />
+    <Compile Include="Models\ResidualRiskRating.cs" />
+    <Compile Include="Models\UkviImmediateReportType.cs" />
+    <Compile Include="Models\UserRoleToClassToSchemaKey.cs" />
+    <Compile Include="Models\Mapping\UserRoleToIncidentClassPurposeMap.cs" />
+    <Compile Include="Models\UserRoleToIncidentClassPurpose.cs" />
+    <Compile Include="Models\UserToRoleToAdminUnit.cs" />
+    <Compile Include="Models\Country.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\EqcsEntities.cs" />
+    <Compile Include="Models\Incident.cs" />
+    <Compile Include="Models\IncidentAction.cs" />
+    <Compile Include="Models\IncidentActivityLog.cs" />
+    <Compile Include="Models\IncidentsListingView.cs" />
+    <Compile Include="Models\Mapping\IncidentsListingViewMap.cs" />
+    <Compile Include="Models\Mapping\RiskRatingMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Mapping\CountryMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Mapping\OrganisationMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\RiskRating.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Mapping\ApplicationAssetMap.cs" />
+    <Compile Include="Models\Mapping\AdminUnitMap.cs" />
+    <Compile Include="Models\Mapping\AdminUnitTypeMap.cs" />
+    <Compile Include="Models\Mapping\ApplicationRoleMap.cs" />
+    <Compile Include="Models\Mapping\ApplicationUserMap.cs" />
+    <Compile Include="Models\Mapping\UserToRoleToAdminUnitMap.cs" />
+    <Compile Include="Models\Mapping\IncidentActionMap.cs" />
+    <Compile Include="Models\Mapping\IncidentActivityLogMap.cs" />
+    <Compile Include="Models\Mapping\IncidentMap.cs" />
+    <Compile Include="Models\Mapping\ProductMap.cs" />
+    <Compile Include="Models\Mapping\OrganisationTypeMap.cs" />
+    <Compile Include="Models\Mapping\TestCentreMap.cs" />
+    <Compile Include="Models\Mapping\TestLocationMap.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\OrganisationType.cs" />
+    <Compile Include="Models\Organisation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\TestCentre.cs" />
+    <Compile Include="Models\TestLocation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\EntityExtensions.cs" />
+    <Compile Include="Utils\EntityHelpers.cs" />
+    <Compile Include="Utils\IdentifierReferencePair.cs" />
+    <Compile Include="Utils\StaticLookupCache.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Models\User Security.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BC.EQCS.Models.Enums\BC.EQCS.Models.Enums.csproj">
+      <Project>{68393f44-b52b-4bd0-b1a0-75835bbd8178}</Project>
+      <Name>BC.EQCS.Models.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Utils\BC.EQCS.Utils.csproj">
+      <Project>{6255022e-d07d-4dc0-8615-fd3bd175fbdc}</Project>
+      <Name>BC.EQCS.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

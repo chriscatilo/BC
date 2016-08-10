@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>BC.EQCS.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{7453bda7-f6a2-4460-ab35-2b8b284d7c8d}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>BC.EQCS.Database</RootNamespace>
+    <AssemblyName>BC.EQCS.Database</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'InternalDebug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'InternalRelease|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ExternalDebug|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ExternalRelease|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Development|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="..\Deploy\Tools\SqlServer\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <!-- <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" /> -->
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Scripts" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\Views" />
+    <Folder Include="stage" />
+    <Folder Include="stage\Tables" />
+    <Folder Include="stage\Procedure" />
+    <Folder Include="dbo\Type" />
+    <Folder Include="stage\Functions" />
+    <Folder Include="stage\Type" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\PostDeploy.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Recreate.Database.publish.xml" />
+    <None Include="Recreate.Database.sqlexpress.publish.xml" />
+    <None Include="Scripts\stage.Migrate.sql" />
+    <None Include="Scripts\AdminUnits.sql" />
+    <None Include="Deploy.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\IncidentClasses.sql" />
+    <None Include="Scripts\OrganisationTypes.sql" />
+    <Build Include="dbo\Tables\Elmah_Error.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="BC.EQCS.Database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\RiskRatings.sql" />
+    <None Include="Scripts\IncidentProducts.sql" />
+    <Build Include="dbo\Functions\GetIdForRoleDefinition.sql" />
+    <None Include="Scripts\AdminUnitTypes.sql" />
+    <None Include="Scripts\ApplicationPermissions.sql" />
+    <Build Include="dbo\Tables\Country.sql" />
+    <Build Include="dbo\Tables\Organisation.sql" />
+    <Build Include="dbo\Tables\OrganisationCountry.sql" />
+    <Build Include="dbo\Tables\TestLocation.sql" />
+    <None Include="Scripts\Countries.sql" />
+    <None Include="Scripts\Organisations.sql" />
+    <Build Include="dbo\Tables\ApplicationAsset.sql" />
+    <Build Include="dbo\Tables\AdminUnit.sql" />
+    <Build Include="dbo\Tables\AdminUnitType.sql" />
+    <Build Include="dbo\Tables\ApplicationPermission.sql" />
+    <Build Include="dbo\Tables\IncidentClassDefault.sql" />
+    <Build Include="dbo\Tables\Product.sql" />
+    <Build Include="dbo\Tables\RiskRating.sql" />
+    <Build Include="dbo\Tables\ApplicationRole.sql" />
+    <Build Include="dbo\Tables\ApplicationUser.sql" />
+    <Build Include="dbo\Tables\IncidentActions.sql" />
+    <Build Include="dbo\Tables\IncidentActivityLog.sql" />
+    <Build Include="dbo\Tables\Incident.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\ApplicationRoles.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Views\IncidentsListingView.sql" />
+    <Build Include="stage\Tables\Region.sql" />
+    <Build Include="stage\stage.sql" />
+    <None Include="Scripts\stage.UkviTestVenues.sql" />
+    <Build Include="stage\Tables\SubRegion.sql" />
+    <Build Include="stage\Tables\TestCentre.sql" />
+    <Build Include="dbo\Tables\TestCentre.sql" />
+    <Build Include="stage\Procedure\usp_TestCentres_MigrateRegions.sql" />
+    <Build Include="stage\Procedure\usp_TestCentres_MigrateSubRegions.sql" />
+    <Build Include="stage\Procedure\usp_TestCentres_MigrateTestCentres.sql" />
+    <Build Include="stage\Tables\UkviTestVenues.sql" />
+    <None Include="Scripts\ApplicationAssets.sql" />
+    <None Include="Scripts\stage.Users.sql" />
+    <Build Include="stage\Tables\Users.sql" />
+    <Build Include="stage\Procedure\usp_Users_MigrateUsers.sql" />
+    <Build Include="dbo\Tables\UserToRoleToAdminUnit.sql" />
+    <Build Include="stage\Procedure\usp_Users_MigrateUserToRoleToAdminUnitMaps.sql" />
+    <Build Include="dbo\Tables\IncidentClassType.sql" />
+    <Build Include="dbo\Tables\IncidentClass.sql" />
+    <Build Include="stage\Tables\TypeCategorySubCategory.sql" />
+    <Build Include="stage\Procedure\usp_TypeCategorySubCategory_MigrateTypes.sql" />
+    <Build Include="stage\Procedure\usp_TypeCategorySubCategory_MigrateCategories.sql" />
+    <None Include="Scripts\IncidentClassTypes.sql" />
+    <None Include="Scripts\AdminUnits.sql" />
+    <Build Include="stage\Procedure\usp_TypeCategorySubCategory_MigrateSubCategories.sql" />
+    <Build Include="dbo\Functions\Trim.sql" />
+    <Build Include="dbo\Functions\SelectIncidentClassTree.sql" />
+    <Build Include="dbo\Tables\UserRoleToIncidentClass.sql" />
+    <Build Include="dbo\Type\Codes.sql" />
+    <Build Include="dbo\Functions\SelectAdminUnitTree.sql" />
+    <Build Include="dbo\Tables\OrganisationType.sql" />
+    <Build Include="dbo\Views\IncidentView.sql" />
+    <Build Include="dbo\Views\IncidentClassPivotByNodeName.sql" />
+    <Build Include="dbo\Tables\SchemaKeyMap.sql" />
+    <None Include="Scripts\SchemaKeyMaps.sql" />
+    <Build Include="dbo\Views\UserRoleToClassToSchemaKey.sql" />
+    <None Include="Scripts\IncidentStatus.sql" />
+    <None Include="Scripts\UserRoleToIncidentClassPurpose.sql" />
+    <Build Include="dbo\Tables\IncidentStatus.sql" />
+    <Build Include="dbo\Tables\UserRoleToIncidentClassPurpose.sql" />
+    <Build Include="dbo\Views\Viewable_UserRoleToIncidentClass.sql" />
+    <Build Include="dbo\Views\Raisable_UserRoleToIncidentClass.sql" />
+    <Build Include="dbo\Views\IncidentActivityListingView.sql" />
+    <Build Include="dbo\Tables\IncidentCandidates.sql" />
+    <Build Include="dbo\Views\IncidentActionListingView.sql" />
+    <Build Include="dbo\Tables\IncidentActionStatus.sql" />
+    <None Include="Scripts\IncidentActionStatus.sql" />
+    <Build Include="dbo\Views\IELTSAdminUnitPivotByNodeName.sql" />
+    <Build Include="dbo\Tables\ActionToAssigneeUser.sql" />
+    <Build Include="dbo\Tables\ApplicationRoleToAdminUnitType.sql" />
+    <Build Include="dbo\Views\IncidentCandidateView.sql" />
+    <Build Include="stage\Procedure\usp_PopulateApplicationRoleToAdminUnitType.sql" />
+    <Build Include="stage\Procedure\usp_PopulateApplicationRoleToAdminUnitTypeRow.sql" />
+    <Build Include="dbo\Tables\NotificationMessageTemplate.sql" />
+    <Build Include="dbo\Tables\NotificationEvent.sql" />
+    <Build Include="dbo\Tables\NotificationMapping.sql" />
+    <None Include="Scripts\NotificationEvent.sql" />
+    <None Include="Scripts\NotificationMessageTemplate.sql" />
+    <None Include="Scripts\NotificationMapping.sql" />
+    <Build Include="stage\Procedure\Elmah.sql" />
+    <Build Include="dbo\Tables\TestRegion.sql" />
+    <Build Include="dbo\Tables\DocumentStorage.sql" />
+    <None Include="Scripts\stage.TestCentres.sql" />
+    <Build Include="dbo\Functions\TitleCase.sql" />
+    <None Include="Scripts\ResidualRiskRating.sql" />
+    <Build Include="dbo\Tables\ResidualRiskRating.sql" />
+    <Build Include="dbo\Tables\ExternalUserClaims.sql" />
+    <Build Include="dbo\Tables\ExternalUserLogins.sql" />
+    <Build Include="dbo\Tables\ExternalRoles.sql" />
+    <Build Include="dbo\Tables\ExternalUserRoles.sql" />
+    <Build Include="dbo\Views\ReadOnly_UserRoleToIncidentClass.sql" />
+    <Build Include="dbo\Tables\UkviImmediateReportType.sql" />
+    <None Include="Scripts\UkviImmediateReportTypes.sql" />
+    <Build Include="stage\Procedure\usp_TypeCategorySubCategory_MergeToUserRoleToIncidentClass.sql" />
+    <Build Include="stage\Procedure\usp_TypeCategorySubCategory_BuildUserRoleToIncidentClass.sql" />
+    <Build Include="stage\Tables\OrsTestLocations.sql" />
+    <None Include="Scripts\stage.OrsTestLocations.sql" />
+    <Build Include="stage\Procedure\usp_UkviTestVenues_OrsTestLocations_MigrateTestLocations.sql" />
+    <Build Include="stage\Functions\CleanLocationName.sql" />
+    <Build Include="stage\Procedure\usp_TypeCategorySubCategory_AddUpdateDeactivateIncidentClasses.sql" />
+    <Build Include="stage\Type\IncidentClasses.sql" />
+    <Build Include="stage\Procedure\usp_TypeCategorySubCategory_Migrate.sql" />
+    <Build Include="stage\Procedure\usp_TypeCategorySubCategory_PopulateStagingTable.sql" />
+  </ItemGroup>
+  <Import Project="..\packages\OctoPack.3.0.42\tools\OctoPack.targets" Condition="Exists('..\packages\OctoPack.3.0.42\tools\OctoPack.targets')" />
+  <Target Name="EnsureOctoPackImported" BeforeTargets="BeforeBuild" Condition="'$(OctoPackImported)' == ''">
+    <Error Condition="!Exists('..\packages\OctoPack.3.0.42\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="You are trying to build with OctoPack, but the NuGet targets file that OctoPack depends on is not available on this computer. This is probably because the OctoPack package has not been committed to source control, or NuGet Package Restore is not enabled. Please enable NuGet Package Restore to download them. For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\OctoPack.3.0.42\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="OctoPack cannot be run because NuGet packages were restored prior to the build running, and the targets file was unavailable when the build started. Please build the project again to include these packages in the build. You may also need to make sure that your build server does not delete packages prior to each build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+</Project>

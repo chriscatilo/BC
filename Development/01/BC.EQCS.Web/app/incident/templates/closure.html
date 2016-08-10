@@ -1,0 +1,24 @@
+﻿<div ng-form="closure" ng-controller="IncidentCloseCtrl">
+    <fieldset class="container">
+        <legend>
+            <span ng-bind="vm.config.form.label"></span>
+            <client-validation-errors form="closure" errors="vm.config.form.errors"></client-validation-errors>
+        </legend>
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <text-area ng-form="comments"
+                       ng-model="vm.closureModel.Comments"
+                       config="vm.config.form.comments"></text-area>
+        </div>
+        
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <input-select ng-form="residualRisk"
+                          ng-model="vm.userSelectedResidualRiskRating"
+                          config="vm.config.form.residualRisk"
+                          options="vm.resources.residualRiskRatings"
+                          option-exp="item.code as item.name for item in options"
+                          exclude-default-option="true">
+            </input-select>
+        </div>
+    </fieldset>
+    <commands actions="vm.commands" configs="vm.config.commandButtons"></commands>
+</div>

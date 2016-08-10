@@ -1,0 +1,12 @@
+﻿@model BC.EQCS.Web.Models.ViewModel
+
+<div ng-view></div>
+
+@if (Model.HideOverlay == false)
+{
+
+@*  when a view for an angular module (e.g. incident, audit) is presented 
+    then ensure that the site overlay is displayable *@
+<style type="text/css">.site-overlay {display: inherit !important;}</style>
+
+}

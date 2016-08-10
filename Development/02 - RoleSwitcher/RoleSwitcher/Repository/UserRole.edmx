@@ -1,0 +1,753 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EQCSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminUnit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="UbiquitousCode" Type="varchar" MaxLength="50" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdminUnitType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ApplicationAsset">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ApplicationPermission">
+          <Key>
+            <PropertyRef Name="ApplicationRoleId" />
+            <PropertyRef Name="ApplicationAssetId" />
+          </Key>
+          <Property Name="ApplicationRoleId" Type="int" Nullable="false" />
+          <Property Name="ApplicationAssetId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplicationRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="25" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="DataAuthorisation" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplicationRoleToAdminUnitType">
+          <Key>
+            <PropertyRef Name="ApplicationRoleId" />
+            <PropertyRef Name="AdminUnitTypeId" />
+          </Key>
+          <Property Name="ApplicationRoleId" Type="int" Nullable="false" />
+          <Property Name="AdminUnitTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplicationUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ObjectGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="128" />
+          <Property Name="FirstName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="ExternalUserName" Type="nvarchar(max)" />
+          <Property Name="ExternalUserPasswordHash" Type="nvarchar(max)" />
+          <Property Name="ExternalUserSecurityStamp" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" />
+          <Property Name="JobTitle" Type="varchar" MaxLength="128" />
+          <Property Name="Telephone" Type="varchar" MaxLength="128" />
+          <Property Name="Country" Type="varchar" MaxLength="128" />
+          <Property Name="DefaultCountryId" Type="int" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="ApplicationCountryDepartmentId" Type="int" />
+          <Property Name="SelectedCountryId" Type="int" />
+        </EntityType>
+        <EntityType Name="TestCentre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CentreNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganisationId" Type="int" />
+          <Property Name="AdminUnitId" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="2048" />
+          <Property Name="Administrator" Type="nvarchar" MaxLength="100" />
+          <Property Name="PrimaryEmail" Type="varchar" MaxLength="100" />
+          <Property Name="SecondaryEmail" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="AdminUnitId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="AddressLine1" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="AddressLine2" Type="nvarchar" MaxLength="150" />
+          <Property Name="Town" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="GeoLat" Type="float" />
+          <Property Name="GeoLng" Type="float" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserToRoleToAdminUnit">
+          <Key>
+            <PropertyRef Name="ApplicationUserId" />
+            <PropertyRef Name="ApplicationRoleId" />
+            <PropertyRef Name="AdminUnitId" />
+          </Key>
+          <Property Name="ApplicationUserId" Type="int" Nullable="false" />
+          <Property Name="ApplicationRoleId" Type="int" Nullable="false" />
+          <Property Name="AdminUnitId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__AdminUnitType__AdminUnitTypeId">
+          <End Role="AdminUnitType" Type="Self.AdminUnitType" Multiplicity="1" />
+          <End Role="ApplicationRoleToAdminUnitType" Type="Self.ApplicationRoleToAdminUnitType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminUnitType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationRoleToAdminUnitType">
+              <PropertyRef Name="AdminUnitTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ApplicationPermission__ApplicationAssetId">
+          <End Role="ApplicationAsset" Type="Self.ApplicationAsset" Multiplicity="1" />
+          <End Role="ApplicationPermission" Type="Self.ApplicationPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationAsset">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationPermission">
+              <PropertyRef Name="ApplicationAssetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ApplicationPermission__ApplicationRoleId">
+          <End Role="ApplicationRole" Type="Self.ApplicationRole" Multiplicity="1" />
+          <End Role="ApplicationPermission" Type="Self.ApplicationPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationPermission">
+              <PropertyRef Name="ApplicationRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ApplicationRole__ApplicationRoleId">
+          <End Role="ApplicationRole" Type="Self.ApplicationRole" Multiplicity="1" />
+          <End Role="ApplicationRoleToAdminUnitType" Type="Self.ApplicationRoleToAdminUnitType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationRoleToAdminUnitType">
+              <PropertyRef Name="ApplicationRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdminUnit_ParentId">
+          <End Role="AdminUnit" Type="Self.AdminUnit" Multiplicity="0..1" />
+          <End Role="AdminUnit1" Type="Self.AdminUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminUnit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdminUnit1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdminUnit_Type">
+          <End Role="AdminUnitType" Type="Self.AdminUnitType" Multiplicity="1" />
+          <End Role="AdminUnit" Type="Self.AdminUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminUnitType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdminUnit">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestCentre_AdminUnit">
+          <End Role="AdminUnit" Type="Self.AdminUnit" Multiplicity="1" />
+          <End Role="TestCentre" Type="Self.TestCentre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminUnit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestCentre">
+              <PropertyRef Name="AdminUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestLocation_AdminUnitId">
+          <End Role="AdminUnit" Type="Self.AdminUnit" Multiplicity="1" />
+          <End Role="TestLocation" Type="Self.TestLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminUnit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestLocation">
+              <PropertyRef Name="AdminUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserToRoleToAdminUnit_AdminUnit">
+          <End Role="AdminUnit" Type="Self.AdminUnit" Multiplicity="1" />
+          <End Role="UserToRoleToAdminUnit" Type="Self.UserToRoleToAdminUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminUnit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserToRoleToAdminUnit">
+              <PropertyRef Name="AdminUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserToRoleToAdminUnit_ApplicationRole">
+          <End Role="ApplicationRole" Type="Self.ApplicationRole" Multiplicity="1" />
+          <End Role="UserToRoleToAdminUnit" Type="Self.UserToRoleToAdminUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserToRoleToAdminUnit">
+              <PropertyRef Name="ApplicationRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserToRoleToAdminUnit_ApplicationUser">
+          <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
+          <End Role="UserToRoleToAdminUnit" Type="Self.UserToRoleToAdminUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserToRoleToAdminUnit">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EQCSModelStoreContainer">
+          <EntitySet Name="AdminUnit" EntityType="Self.AdminUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminUnitType" EntityType="Self.AdminUnitType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationAsset" EntityType="Self.ApplicationAsset" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationPermission" EntityType="Self.ApplicationPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationRole" EntityType="Self.ApplicationRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationRoleToAdminUnitType" EntityType="Self.ApplicationRoleToAdminUnitType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationUser" EntityType="Self.ApplicationUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestCentre" EntityType="Self.TestCentre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestLocation" EntityType="Self.TestLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserToRoleToAdminUnit" EntityType="Self.UserToRoleToAdminUnit" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AdminUnitType__AdminUnitTypeId" Association="Self.FK__AdminUnitType__AdminUnitTypeId">
+            <End Role="AdminUnitType" EntitySet="AdminUnitType" />
+            <End Role="ApplicationRoleToAdminUnitType" EntitySet="ApplicationRoleToAdminUnitType" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ApplicationPermission__ApplicationAssetId" Association="Self.FK__ApplicationPermission__ApplicationAssetId">
+            <End Role="ApplicationAsset" EntitySet="ApplicationAsset" />
+            <End Role="ApplicationPermission" EntitySet="ApplicationPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ApplicationPermission__ApplicationRoleId" Association="Self.FK__ApplicationPermission__ApplicationRoleId">
+            <End Role="ApplicationRole" EntitySet="ApplicationRole" />
+            <End Role="ApplicationPermission" EntitySet="ApplicationPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ApplicationRole__ApplicationRoleId" Association="Self.FK__ApplicationRole__ApplicationRoleId">
+            <End Role="ApplicationRole" EntitySet="ApplicationRole" />
+            <End Role="ApplicationRoleToAdminUnitType" EntitySet="ApplicationRoleToAdminUnitType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdminUnit_ParentId" Association="Self.FK_AdminUnit_ParentId">
+            <End Role="AdminUnit" EntitySet="AdminUnit" />
+            <End Role="AdminUnit1" EntitySet="AdminUnit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdminUnit_Type" Association="Self.FK_AdminUnit_Type">
+            <End Role="AdminUnitType" EntitySet="AdminUnitType" />
+            <End Role="AdminUnit" EntitySet="AdminUnit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestCentre_AdminUnit" Association="Self.FK_TestCentre_AdminUnit">
+            <End Role="AdminUnit" EntitySet="AdminUnit" />
+            <End Role="TestCentre" EntitySet="TestCentre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestLocation_AdminUnitId" Association="Self.FK_TestLocation_AdminUnitId">
+            <End Role="AdminUnit" EntitySet="AdminUnit" />
+            <End Role="TestLocation" EntitySet="TestLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserToRoleToAdminUnit_AdminUnit" Association="Self.FK_UserToRoleToAdminUnit_AdminUnit">
+            <End Role="AdminUnit" EntitySet="AdminUnit" />
+            <End Role="UserToRoleToAdminUnit" EntitySet="UserToRoleToAdminUnit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserToRoleToAdminUnit_ApplicationRole" Association="Self.FK_UserToRoleToAdminUnit_ApplicationRole">
+            <End Role="ApplicationRole" EntitySet="ApplicationRole" />
+            <End Role="UserToRoleToAdminUnit" EntitySet="UserToRoleToAdminUnit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserToRoleToAdminUnit_ApplicationUser" Association="Self.FK_UserToRoleToAdminUnit_ApplicationUser">
+            <End Role="ApplicationUser" EntitySet="ApplicationUser" />
+            <End Role="UserToRoleToAdminUnit" EntitySet="UserToRoleToAdminUnit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EQCSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EQCSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminUnits" EntityType="EQCSModel.AdminUnit" />
+          <EntitySet Name="AdminUnitTypes" EntityType="EQCSModel.AdminUnitType" />
+          <EntitySet Name="ApplicationAssets" EntityType="EQCSModel.ApplicationAsset" />
+          <EntitySet Name="ApplicationRoles" EntityType="EQCSModel.ApplicationRole" />
+          <EntitySet Name="ApplicationUsers" EntityType="EQCSModel.ApplicationUser" />
+          <AssociationSet Name="FK_AdminUnit_ParentId" Association="EQCSModel.FK_AdminUnit_ParentId">
+            <End Role="AdminUnit" EntitySet="AdminUnits" />
+            <End Role="AdminUnit1" EntitySet="AdminUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdminUnit_Type" Association="EQCSModel.FK_AdminUnit_Type">
+            <End Role="AdminUnitType" EntitySet="AdminUnitTypes" />
+            <End Role="AdminUnit" EntitySet="AdminUnits" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationPermission" Association="EQCSModel.ApplicationPermission">
+            <End Role="ApplicationAsset" EntitySet="ApplicationAssets" />
+            <End Role="ApplicationRole" EntitySet="ApplicationRoles" />
+          </AssociationSet>
+          <EntitySet Name="UserToRoleToAdminUnits" EntityType="EQCSModel.UserToRoleToAdminUnit" />
+          <AssociationSet Name="FK_UserToRoleToAdminUnit_AdminUnit" Association="EQCSModel.FK_UserToRoleToAdminUnit_AdminUnit">
+            <End Role="AdminUnit" EntitySet="AdminUnits" />
+            <End Role="UserToRoleToAdminUnit" EntitySet="UserToRoleToAdminUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserToRoleToAdminUnit_ApplicationRole" Association="EQCSModel.FK_UserToRoleToAdminUnit_ApplicationRole">
+            <End Role="ApplicationRole" EntitySet="ApplicationRoles" />
+            <End Role="UserToRoleToAdminUnit" EntitySet="UserToRoleToAdminUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserToRoleToAdminUnit_ApplicationUser" Association="EQCSModel.FK_UserToRoleToAdminUnit_ApplicationUser">
+            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+            <End Role="UserToRoleToAdminUnit" EntitySet="UserToRoleToAdminUnits" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationRoleToAdminUnitType" Association="EQCSModel.ApplicationRoleToAdminUnitType">
+            <End Role="AdminUnitType" EntitySet="AdminUnitTypes" />
+            <End Role="ApplicationRole" EntitySet="ApplicationRoles" />
+          </AssociationSet>
+          <EntitySet Name="TestCentres" EntityType="EQCSModel.TestCentre" />
+          <EntitySet Name="TestLocations" EntityType="EQCSModel.TestLocation" />
+          <AssociationSet Name="FK_TestCentre_AdminUnit" Association="EQCSModel.FK_TestCentre_AdminUnit">
+            <End Role="AdminUnit" EntitySet="AdminUnits" />
+            <End Role="TestCentre" EntitySet="TestCentres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestLocation_AdminUnitId" Association="EQCSModel.FK_TestLocation_AdminUnitId">
+            <End Role="AdminUnit" EntitySet="AdminUnits" />
+            <End Role="TestLocation" EntitySet="TestLocations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AdminUnit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AdminUnit1" Relationship="EQCSModel.FK_AdminUnit_ParentId" FromRole="AdminUnit" ToRole="AdminUnit1" />
+          <NavigationProperty Name="AdminUnit2" Relationship="EQCSModel.FK_AdminUnit_ParentId" FromRole="AdminUnit1" ToRole="AdminUnit" />
+          <NavigationProperty Name="AdminUnitType" Relationship="EQCSModel.FK_AdminUnit_Type" FromRole="AdminUnit" ToRole="AdminUnitType" />
+          <NavigationProperty Name="UserToRoleToAdminUnits" Relationship="EQCSModel.FK_UserToRoleToAdminUnit_AdminUnit" FromRole="AdminUnit" ToRole="UserToRoleToAdminUnit" />
+          <Property Name="UbiquitousCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TestCentres" Relationship="EQCSModel.FK_TestCentre_AdminUnit" FromRole="AdminUnit" ToRole="TestCentre" />
+          <NavigationProperty Name="TestLocations" Relationship="EQCSModel.FK_TestLocation_AdminUnitId" FromRole="AdminUnit" ToRole="TestLocation" />
+        </EntityType>
+        <EntityType Name="AdminUnitType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AdminUnits" Relationship="EQCSModel.FK_AdminUnit_Type" FromRole="AdminUnitType" ToRole="AdminUnit" />
+          <NavigationProperty Name="ApplicationRoles" Relationship="EQCSModel.ApplicationRoleToAdminUnitType" FromRole="AdminUnitType" ToRole="ApplicationRole" />
+        </EntityType>
+        <EntityType Name="ApplicationAsset">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ApplicationRoles" Relationship="EQCSModel.ApplicationPermission" FromRole="ApplicationAsset" ToRole="ApplicationRole" />
+        </EntityType>
+        <EntityType Name="ApplicationRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DataAuthorisation" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ApplicationAssets" Relationship="EQCSModel.ApplicationPermission" FromRole="ApplicationRole" ToRole="ApplicationAsset" />
+          <NavigationProperty Name="UserToRoleToAdminUnits" Relationship="EQCSModel.FK_UserToRoleToAdminUnit_ApplicationRole" FromRole="ApplicationRole" ToRole="UserToRoleToAdminUnit" />
+          <NavigationProperty Name="AdminUnitTypes" Relationship="EQCSModel.ApplicationRoleToAdminUnitType" FromRole="ApplicationRole" ToRole="AdminUnitType" />
+        </EntityType>
+        <EntityType Name="ApplicationUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ObjectGUID" Type="Guid" Nullable="false" />
+          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="JobTitle" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultCountryId" Type="Int32" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="ApplicationCountryDepartmentId" Type="Int32" />
+          <Property Name="SelectedCountryId" Type="Int32" />
+          <NavigationProperty Name="UserToRoleToAdminUnits" Relationship="EQCSModel.FK_UserToRoleToAdminUnit_ApplicationUser" FromRole="ApplicationUser" ToRole="UserToRoleToAdminUnit" />
+          <Property Name="ExternalUserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExternalUserPasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExternalUserSecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_AdminUnit_ParentId">
+          <End Type="EQCSModel.AdminUnit" Role="AdminUnit" Multiplicity="0..1" />
+          <End Type="EQCSModel.AdminUnit" Role="AdminUnit1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminUnit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdminUnit1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdminUnit_Type">
+          <End Type="EQCSModel.AdminUnitType" Role="AdminUnitType" Multiplicity="1" />
+          <End Type="EQCSModel.AdminUnit" Role="AdminUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminUnitType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdminUnit">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationPermission">
+          <End Type="EQCSModel.ApplicationAsset" Role="ApplicationAsset" Multiplicity="*" />
+          <End Type="EQCSModel.ApplicationRole" Role="ApplicationRole" Multiplicity="*" />
+        </Association>
+        <EntityType Name="UserToRoleToAdminUnit">
+          <Key>
+            <PropertyRef Name="ApplicationUserId" />
+            <PropertyRef Name="ApplicationRoleId" />
+            <PropertyRef Name="AdminUnitId" />
+          </Key>
+          <Property Name="ApplicationUserId" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationRoleId" Type="Int32" Nullable="false" />
+          <Property Name="AdminUnitId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AdminUnit" Relationship="EQCSModel.FK_UserToRoleToAdminUnit_AdminUnit" FromRole="UserToRoleToAdminUnit" ToRole="AdminUnit" />
+          <NavigationProperty Name="ApplicationRole" Relationship="EQCSModel.FK_UserToRoleToAdminUnit_ApplicationRole" FromRole="UserToRoleToAdminUnit" ToRole="ApplicationRole" />
+          <NavigationProperty Name="ApplicationUser" Relationship="EQCSModel.FK_UserToRoleToAdminUnit_ApplicationUser" FromRole="UserToRoleToAdminUnit" ToRole="ApplicationUser" />
+        </EntityType>
+        <Association Name="FK_UserToRoleToAdminUnit_AdminUnit">
+          <End Type="EQCSModel.AdminUnit" Role="AdminUnit" Multiplicity="1" />
+          <End Type="EQCSModel.UserToRoleToAdminUnit" Role="UserToRoleToAdminUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminUnit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserToRoleToAdminUnit">
+              <PropertyRef Name="AdminUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserToRoleToAdminUnit_ApplicationRole">
+          <End Type="EQCSModel.ApplicationRole" Role="ApplicationRole" Multiplicity="1" />
+          <End Type="EQCSModel.UserToRoleToAdminUnit" Role="UserToRoleToAdminUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserToRoleToAdminUnit">
+              <PropertyRef Name="ApplicationRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserToRoleToAdminUnit_ApplicationUser">
+          <End Type="EQCSModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+          <End Type="EQCSModel.UserToRoleToAdminUnit" Role="UserToRoleToAdminUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserToRoleToAdminUnit">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationRoleToAdminUnitType">
+          <End Type="EQCSModel.AdminUnitType" Role="AdminUnitType" Multiplicity="*" />
+          <End Type="EQCSModel.ApplicationRole" Role="ApplicationRole" Multiplicity="*" />
+        </Association>
+        <EntityType Name="TestCentre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CentreNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OrganisationId" Type="Int32" />
+          <Property Name="AdminUnitId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="Administrator" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AdminUnit" Relationship="EQCSModel.FK_TestCentre_AdminUnit" FromRole="TestCentre" ToRole="AdminUnit" />
+        </EntityType>
+        <EntityType Name="TestLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="AdminUnitId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="AddressLine1" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Town" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="GeoLat" Type="Double" />
+          <Property Name="GeoLng" Type="Double" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AdminUnit" Relationship="EQCSModel.FK_TestLocation_AdminUnitId" FromRole="TestLocation" ToRole="AdminUnit" />
+        </EntityType>
+        <Association Name="FK_TestCentre_AdminUnit">
+          <End Type="EQCSModel.AdminUnit" Role="AdminUnit" Multiplicity="1" />
+          <End Type="EQCSModel.TestCentre" Role="TestCentre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminUnit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestCentre">
+              <PropertyRef Name="AdminUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestLocation_AdminUnitId">
+          <End Type="EQCSModel.AdminUnit" Role="AdminUnit" Multiplicity="1" />
+          <End Type="EQCSModel.TestLocation" Role="TestLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminUnit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestLocation">
+              <PropertyRef Name="AdminUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EQCSModelStoreContainer" CdmEntityContainer="EQCSEntities">
+          <EntitySetMapping Name="AdminUnits">
+            <EntityTypeMapping TypeName="EQCSModel.AdminUnit">
+              <MappingFragment StoreEntitySet="AdminUnit">
+                <ScalarProperty Name="UbiquitousCode" ColumnName="UbiquitousCode" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminUnitTypes">
+            <EntityTypeMapping TypeName="EQCSModel.AdminUnitType">
+              <MappingFragment StoreEntitySet="AdminUnitType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationAssets">
+            <EntityTypeMapping TypeName="EQCSModel.ApplicationAsset">
+              <MappingFragment StoreEntitySet="ApplicationAsset">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationRoles">
+            <EntityTypeMapping TypeName="EQCSModel.ApplicationRole">
+              <MappingFragment StoreEntitySet="ApplicationRole">
+                <ScalarProperty Name="DataAuthorisation" ColumnName="DataAuthorisation" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationUsers">
+            <EntityTypeMapping TypeName="EQCSModel.ApplicationUser">
+              <MappingFragment StoreEntitySet="ApplicationUser">
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="ExternalUserSecurityStamp" ColumnName="ExternalUserSecurityStamp" />
+                <ScalarProperty Name="ExternalUserPasswordHash" ColumnName="ExternalUserPasswordHash" />
+                <ScalarProperty Name="ExternalUserName" ColumnName="ExternalUserName" />
+                <ScalarProperty Name="SelectedCountryId" ColumnName="SelectedCountryId" />
+                <ScalarProperty Name="ApplicationCountryDepartmentId" ColumnName="ApplicationCountryDepartmentId" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="DefaultCountryId" ColumnName="DefaultCountryId" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="ObjectGUID" ColumnName="ObjectGUID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ApplicationPermission" TypeName="EQCSModel.ApplicationPermission" StoreEntitySet="ApplicationPermission">
+            <EndProperty Name="ApplicationRole">
+              <ScalarProperty Name="Id" ColumnName="ApplicationRoleId" />
+            </EndProperty>
+            <EndProperty Name="ApplicationAsset">
+              <ScalarProperty Name="Id" ColumnName="ApplicationAssetId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="UserToRoleToAdminUnits">
+            <EntityTypeMapping TypeName="EQCSModel.UserToRoleToAdminUnit">
+              <MappingFragment StoreEntitySet="UserToRoleToAdminUnit">
+                <ScalarProperty Name="AdminUnitId" ColumnName="AdminUnitId" />
+                <ScalarProperty Name="ApplicationRoleId" ColumnName="ApplicationRoleId" />
+                <ScalarProperty Name="ApplicationUserId" ColumnName="ApplicationUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ApplicationRoleToAdminUnitType" TypeName="EQCSModel.ApplicationRoleToAdminUnitType" StoreEntitySet="ApplicationRoleToAdminUnitType">
+            <EndProperty Name="ApplicationRole">
+              <ScalarProperty Name="Id" ColumnName="ApplicationRoleId" />
+            </EndProperty>
+            <EndProperty Name="AdminUnitType">
+              <ScalarProperty Name="Id" ColumnName="AdminUnitTypeId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="TestCentres">
+            <EntityTypeMapping TypeName="EQCSModel.TestCentre">
+              <MappingFragment StoreEntitySet="TestCentre">
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SecondaryEmail" ColumnName="SecondaryEmail" />
+                <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
+                <ScalarProperty Name="Administrator" ColumnName="Administrator" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AdminUnitId" ColumnName="AdminUnitId" />
+                <ScalarProperty Name="OrganisationId" ColumnName="OrganisationId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CentreNumber" ColumnName="CentreNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestLocations">
+            <EntityTypeMapping TypeName="EQCSModel.TestLocation">
+              <MappingFragment StoreEntitySet="TestLocation">
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="GeoLng" ColumnName="GeoLng" />
+                <ScalarProperty Name="GeoLat" ColumnName="GeoLat" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AdminUnitId" ColumnName="AdminUnitId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

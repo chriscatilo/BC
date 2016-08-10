@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Package</id>
+    <version>1.0.0</version>
+    <authors>DinoAntonello</authors>
+    <owners>DinoAntonello</owners>
+    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package description</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>Tag1 Tag2</tags>
+    <dependencies>
+      <dependency id="SampleDependency" version="1.0" />
+    </dependencies>
+    <files>
+      <!-- The Database Schema -->
+      <file src="\dbo\**\*.sql"
+              target="Content\Schema"/>
+      <!-- The deployment script -->
+      <file src="\obj\**\*.sql"
+              target="Content\Deploy" />
+      <file src="\obj\**\*.xml"
+              target="Content\Deploy" />
+      <!-- Your .dacpac location -->
+      <file src="..\..\..\..\..\..\bin\**\*.dacpac"
+              target="Content\Deploy" />
+    </files>
+  </metadata>
+</package>
+

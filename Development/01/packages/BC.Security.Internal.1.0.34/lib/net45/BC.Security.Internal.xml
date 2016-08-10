@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BC.Security.Internal</name>
+    </assembly>
+    <members>
+        <member name="T:BC.Security.Internal.IWindowsPrincipalHandlerFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BC.Security.Internal.IWindowsPrincipalHandlerFactory.Create">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BC.Security.Internal.LogExtensions">
+            <summary>
+            Extensions to help make logging awesome - this should be installed into the root namespace of your application
+            </summary>
+        </member>
+        <member name="F:BC.Security.Internal.LogExtensions._dictionary">
+            <summary>
+            Concurrent dictionary that ensures only one instance of a logger for a type.
+            </summary>
+        </member>
+        <member name="M:BC.Security.Internal.LogExtensions.Log``1(``0)">
+            <summary>
+            Gets the logger for <see cref="!:T"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type">The type to get the logger for.</param>
+            <returns>Instance of a logger for the object.</returns>
+        </member>
+        <member name="M:BC.Security.Internal.LogExtensions.Log(System.String)">
+            <summary>
+            Gets the logger for the specified object name.
+            </summary>
+            <param name="objectName">Either use the fully qualified object name or the short. If used with Log&lt;T&gt;() you must use the fully qualified object name"/></param>
+            <returns>Instance of a logger for the object.</returns>
+        </member>
+        <member name="T:BC.Security.Internal.WindowsPrincipalAuthenticationMiddleware">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BC.Security.Internal.WindowsPrincipalAuthenticationMiddleware.#ctor(Microsoft.Owin.OwinMiddleware,Owin.IAppBuilder,BC.Security.Internal.WindowsPrincipalAuthenticationOptions,BC.Security.Internal.IWindowsPrincipalHandlerFactory)">
+            <summary>
+            
+            </summary>
+            <param name="next"></param>
+            <param name="app"></param>
+            <param name="options"></param>
+            <param name="principalHandlerFactory"></param>
+        </member>
+        <member name="M:BC.Security.Internal.WindowsPrincipalHandler.ValidateUser(BC.Security.Internal.Contracts.Models.UserModel)">
+            <summary>
+            In inherited classes this method can be overridden and additional logic inserted to determine whether the user has access to the application.
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BC.Security.Internal.WindowsPrincipalHandlerFactory">
+            <summary>
+            This is the default factory for the WindowsPrincipalHandler. 
+            Replace this implementation if you want to supply an inherited version of the handler
+            </summary>
+        </member>
+    </members>
+</doc>

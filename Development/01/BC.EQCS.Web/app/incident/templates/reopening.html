@@ -1,0 +1,14 @@
+﻿<div>
+    <fieldset class="container">
+        <legend>
+            <span ng-bind="vm.config.form.label"></span>
+        </legend>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <text-area
+                ng-form="reason"
+                ng-model="vm.reopeningModel.reason"
+                config="vm.config.form.reason"></text-area>
+        </div>
+    </fieldset>
+    <commands actions="vm.commands" configs="vm.config.commandButtons"></commands>
+</div>

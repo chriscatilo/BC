@@ -1,0 +1,11 @@
+﻿@model BC.EQCS.Web.Models.LoginViewModel
+@{
+    Layout = "~/Views/Account/_LoginLayout.cshtml";
+
+}
+<div>
+    <form action="/Windows/WindowsLogin" id="WindowsLogin"  class="form-horizontal" method="post" role="form" novalidate="novalidate">
+        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+    </form>
+</div>
+

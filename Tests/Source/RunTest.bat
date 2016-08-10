@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Java\jre7\bin\java.exe" -cp ".;%~dp0Source\..\bin;%~dp0\..\Tools\selenium-2.45.0\*;%~dp0\..\Tools\selenium-2.45.0\libs\*;%~dp0\..\Tools\poi-3.11\*;%~dp0\..\Tools\poi-3.11\ooxml-lib\*" org.testng.TestNG "%~dp0testng.xml" -d "%~dp0..\_results"

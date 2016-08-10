@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c7fc145256ad46a4b2649a508af71929" Name="Diagram1">
+        <EntityTypeShape EntityType="EQCSModel.AdminUnit" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="EQCSModel.AdminUnitType" Width="1.5" PointX="0.75" PointY="0.5" />
+        <EntityTypeShape EntityType="EQCSModel.ApplicationAsset" Width="1.5" PointX="5.75" PointY="1" />
+        <EntityTypeShape EntityType="EQCSModel.ApplicationRole" Width="1.5" PointX="8.25" PointY="0.5" />
+        <EntityTypeShape EntityType="EQCSModel.ApplicationUser" Width="1.5" PointX="11.625" PointY="1.25" />
+        <AssociationConnector Association="EQCSModel.FK_AdminUnit_ParentId" />
+        <AssociationConnector Association="EQCSModel.FK_AdminUnit_Type" />
+        <AssociationConnector Association="EQCSModel.ApplicationPermission" />
+        <EntityTypeShape EntityType="EQCSModel.UserToRoleToAdminUnit" Width="1.5" PointX="7.875" PointY="4.25" />
+        <AssociationConnector Association="EQCSModel.FK_UserToRoleToAdminUnit_AdminUnit" />
+        <AssociationConnector Association="EQCSModel.FK_UserToRoleToAdminUnit_ApplicationRole" />
+        <AssociationConnector Association="EQCSModel.FK_UserToRoleToAdminUnit_ApplicationUser" />
+        <AssociationConnector Association="EQCSModel.ApplicationRoleToAdminUnitType" />
+        <EntityTypeShape EntityType="EQCSModel.TestCentre" Width="1.5" PointX="5.25" PointY="10.375" />
+        <EntityTypeShape EntityType="EQCSModel.TestLocation" Width="1.5" PointX="5.25" PointY="5.875" />
+        <AssociationConnector Association="EQCSModel.FK_TestCentre_AdminUnit" />
+        <AssociationConnector Association="EQCSModel.FK_TestLocation_AdminUnitId" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

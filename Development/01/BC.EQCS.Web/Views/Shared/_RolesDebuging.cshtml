@@ -1,0 +1,237 @@
+﻿@using BC.EQCS.Entities
+@using BC.EQCS.Models
+@using BC.EQCS.Repositories.Security
+@using BC.EQCS.Security.Models
+@using BC.EQCS.Web.Infrastructure
+@using BC.Security.Internal
+@{
+    var owinContext = HttpContext.Current.Request.GetOwinContext();
+
+    var user = owinContext.Get<SecurityUserModel>(WindowsPrincipalHandler.UserRequestKey);
+    var authoriser = new AuthoriserFactory().Create();
+}
+
+@helper AdminUnitDetails(AdminUnitModel adminUnit)
+{
+    <small style="font-size: xx-small">( @adminUnit.Type )</small>
+}
+
+@helper ListAdminUnit(IEnumerable<AdminUnitModel> adminUnits)
+{
+    <ul>
+        @foreach (var adminUnit in adminUnits)
+        {
+            <li>
+                @adminUnit.Name @AdminUnitDetails(adminUnit)
+                @ListAdminUnit(adminUnit.Children)
+            </li>
+        }
+    </ul>
+}
+
+
+
+<style>
+    #RolesDebug {
+        padding-left: 30px;    
+    }
+
+     .myRolePanel {
+         float: left;
+         margin-right: 3%;
+     }
+
+    .importantNote {
+        text-align: left;
+        color: red;
+        font-weight: bold;
+    }
+
+    #RolesDebug tr th,
+    #RolesDebug tr td {
+        white-space: nowrap;
+        vertical-align: top;
+    }
+
+    #RolesDebug thead tr th {
+        text-align: center;
+        padding-right: 20px;
+    }
+
+    #RolesDefinition td {
+        width: 200px;
+        text-align: center;
+        margin: 20px;
+    }
+
+    #RolesDebug tr th {
+        white-space: nowrap;
+    }
+
+    #RolesDefinition thead th,
+    #RolesDefinition tr tbody th {
+        text-align: center;
+    }
+
+    #RolesDefinition tbody tr td {
+        width: 200px;
+    }
+
+    #RolesDefinition tbody td.True {
+        color: green;
+    }
+
+    #RolesDefinition tbody td.False {
+        color: red;
+    }
+
+    #RolesDefinition .roleType {
+        text-align: left;
+    }
+</style>
+
+
+<div id="RolesDebug">
+
+    @{
+        //TODO: Clean this up, this is debugging code only. This is to be refactored when prioritised tasks are completed
+        //var owinContext = System.Web.HttpContext.Current.Request.GetOwinContext();
+
+        //var user = owinContext.Get<SecurityUserModel>(WindowsPrincipalHandler.UserRequestKey);
+
+        var assetRepository = new AssetRepository(new EntityFactory());
+
+        var allAssets = (from currentAsset in assetRepository.GetAll()
+                         let type = currentAsset.Type
+                         orderby type
+                         select new { currentAsset = currentAsset, type }).Select(x => x.currentAsset).ToList();
+
+        var roleRepository = new RolesRepository(new EntityFactory());
+
+
+        var allRoles = roleRepository.GetAll();
+
+        string lastType;
+    }
+
+    <h4>My RoleType</h4>
+    <h2>@user.FirstName @user.Surname - Access details</h2>
+    @if (user.ApplicationRoles.Count() > 1)
+    {
+        <div class="importantNote">IMPORTANT NOTE: These access details are the combination of all the users roles, so if one role does not allow access but another one does then access is granted</div>
+    }
+    @foreach (var role in user.ApplicationRoles)
+    {
+
+        <h3>@role.Name<small style="font-size: xx-small">( @role.ShortCode )</small></h3>
+
+        <div class="myRolePanel">
+            <h4>Assets Accessible To Role:</h4>
+            <table id="RolesDefinition">
+                @{ lastType = String.Empty;}
+                @foreach (var asset in allAssets)
+                {
+                    if (lastType != asset.Type)
+                    {
+                        <tr><th><br /></th></tr>
+                        <thead>
+                            <tr>
+
+                                <th class="roleType">@asset.Type.Replace("_", " ")</th>
+                                <th>@role.Name <br />Access for<br /> @role.AdminUnit.Name and sub admin units</th>
+                                <th>Access from all<br /> roles combined for<br /> @role.AdminUnit.Name  and sub admin units </th>
+                            </tr>
+                        </thead>
+                    }
+
+                    <tr>
+                        <th>@asset.Name <small style="font-size: xx-small">( @asset.Code )</small></th>
+
+                        @{ var isRoleAuthorised = authoriser.IsRoleAuthorised(asset.Code, role.ShortCode, role.AdminUnit.Code); }
+
+                        <td class="@isRoleAuthorised.ToString()">@Html.Raw(isRoleAuthorised ? "&#10004;" : "&#x2718;")</td>
+
+                        @{ var isAuthorised = authoriser.IsAuthorised(asset.Code, role.AdminUnit.Code); }
+
+                        <td class="@isAuthorised.ToString()">@Html.Raw(isAuthorised ? "&#10004;" : "&#x2718;")</td>
+
+                    </tr>
+
+                         lastType = asset.Type;
+                }
+            </table>
+        </div>
+
+        
+                <div class="myRolePanel">
+                <h4>Available Admin Units To User:</h4>
+                <ul>
+                    <li>
+                        <h4>@role.Name <small style="font-size: xx-small">( @role.AdminUnit.Code )</small></h4>
+                        <ul>
+                            <li>
+                                <h5>@role.AdminUnit.Name @AdminUnitDetails(role.AdminUnit)</h5>
+                                @ListAdminUnit(role.AdminUnit.Children)
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        <br />
+        <hr style="clear: both" />
+        <br />
+        <br />
+
+    }
+
+    <br style="clear: both;" /><br style="clear: both;" /><br style="clear: both;" /><br style="clear: both;" /><br style="clear: both;" />
+
+
+    <h2>RoleType Definition</h2>
+    <table id="RolesDefinition">
+
+        <tbody>
+            @{ lastType = String.Empty;}
+            @foreach (var asset in allAssets)
+            {
+
+                if (lastType != asset.Type)
+                {
+
+                <thead>
+                    <tr><th><br /></th></tr>
+                    <tr>
+                        <th class="roleType">@asset.Type.Replace("_", " ")</th>
+                        @foreach (var role in allRoles)
+                        {
+                            <th>@role.Name</th>
+                        }
+                    </tr>
+                </thead>
+                }
+
+                <tr>
+                    <th>@asset.Name <small style="font-size: xx-small">( @asset.Code )</small></th>
+                    @foreach (var role in allRoles)
+                    {
+                        var isAuthorised = role.ApplicationAssets.Any(x => x.Code == asset.Code);
+
+                        <td class="@isAuthorised.ToString()">@Html.Raw(isAuthorised ? "&#10004;" : "&#x2718;")</td>
+                    }
+                </tr>
+
+                    lastType = asset.Type;
+            }
+            </tbody>
+        </table>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+
+    </div>
+

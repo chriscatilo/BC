@@ -1,0 +1,419 @@
+﻿@{
+    Layout = null;
+}
+@using BC.EQCS.Utils
+@model BC.EQCS.Models.UkviImmediateReportModel
+
+
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+      xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+    <meta name=ProgId content=Word.Document>
+    <meta name=Generator content="Microsoft Word 14">
+    <meta name=Originator content="Microsoft Word 14">
+    <title></title>
+   
+    <!--[if gte mso 9]><xml>
+                           <o:DocumentProperties>
+                               <o:Author>British Council (Global Information Services)</o:Author>
+                               <o:Template>Normal</o:Template>
+                               <o:LastAuthor>British Council (Global Information Services)</o:LastAuthor>
+                               <o:Company>British Council</o:Company>
+                               <o:Version>14.00</o:Version>
+                           </o:DocumentProperties>
+                       </xml>
+        <![endif]-->
+    
+    <!--[if gte mso 9]>
+    <xml>
+        <w:WordDocument>
+                    <w:View>Print</w:View>
+                <w:Zoom>100</w:Zoom>
+                <w:DoNotOptimizeForBrowser/>
+            <w:SpellingState>Clean</w:SpellingState>
+            <w:GrammarState>Clean</w:GrammarState>
+            <w:TrackMoves/>
+            <w:TrackFormatting/>
+            <w:PunctuationKerning/>
+            <w:ValidateAgainstSchemas/>
+            <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+            <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+            <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+            <w:DoNotPromoteQF/>
+            <w:LidThemeOther>EN-GB</w:LidThemeOther>
+            <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+            <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+            <w:Compatibility>
+                <w:BreakWrappedTables/>
+                <w:SnapToGridInCell/>
+                <w:WrapTextWithPunct/>
+                <w:UseAsianBreakRules/>
+                <w:DontGrowAutofit/>
+                <w:SplitPgBreakAndParaMark/>
+                <w:EnableOpenTypeKerning/>
+                <w:DontFlipMirrorIndents/>
+                <w:OverrideTableStyleHps/>
+            </w:Compatibility>
+            <w:DoNotOptimizeForBrowser/>
+            <m:mathPr>
+                <m:mathFont m:val="Cambria Math"/>
+                <m:brkBin m:val="before"/>
+                <m:brkBinSub m:val="&#45;-"/>
+                <m:smallFrac m:val="off"/>
+                <m:dispDef/>
+                <m:lMargin m:val="0"/>
+                <m:rMargin m:val="0"/>
+                <m:defJc m:val="centerGroup"/>
+                <m:wrapIndent m:val="1440"/>
+                <m:intLim m:val="subSup"/>
+                <m:naryLim m:val="undOvr"/>
+            </m:mathPr>
+        </w:WordDocument>
+     </xml>
+     <![endif]-->
+    
+    <style type="text/css">
+        
+        <!--
+ /* Style Definitions */
+ 
+@@page WordSection1
+	{size:21.0cm 842.0pt;
+	margin:36.0pt 36.0pt 36.0pt 36.0pt;
+	mso-header-margin:0cm;
+	mso-footer-margin:0cm;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+@@page WordSection2
+	{size:842.0pt 21.0cm;
+	mso-page-orientation:landscape;
+	margin:36.0pt 36.0pt 36.0pt 36.0pt;
+	mso-header-margin:0cm;
+	mso-footer-margin:0cm;
+	mso-paper-source:0;}
+div.WordSection2
+	{page:WordSection2;}
+-->
+         table {
+             width: 100%;
+         }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 5px;
+        }
+
+
+        .report-attribute-primary {
+            font-weight: bold;
+        }
+
+        .report-attribute-secondary {
+        }
+
+        .report-value {
+            font-weight: normal;
+        }
+
+        .blank {
+            padding-bottom: 50px;
+        }
+
+        .report-section {
+            margin-bottom: 5px;
+        }
+        .appendix-table-header {
+            vertical-align: top;
+            background-color: purple;
+            color: white;
+        }
+           .appendix-table-header-small {
+            vertical-align: top;
+            background-color: purple;
+            color: white;
+            font-size: 8pt;
+        }
+
+
+         .appendix-table-value-small {
+             font-size: 8pt;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="WordSection1">
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            Notification of Compromised Test
+        </div>
+
+        <div class="report-section">
+            <table>
+                <tr>
+                    <td>
+                        <span class="report-attribute-primary">Test Centre Name: </span>
+                        <span class="report-value">@Model.ReferringOrgName @Model.TestLocation</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="report-attribute-primary">Test Centre Address:</div>
+                        <div class="report-value">@Model.TestCentreModel.Address</div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span class="report-attribute-primary">Test Centre Reference Number: </span>
+                        <span class="report-value">@Model.TestCentreModel.Code Test Date: @Model.TestDate.ToStringStandardFormat()  </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="report-section">
+            <table>
+                <tr>
+                    <td>
+                        <div class="report-attribute-primary">Summary of what has been identified/suspected, including how the issue was identified:</div>
+
+                        <div class="report-attribute-secondary">
+                            Product: <span class="report-value">@Model.Product</span>
+                        </div>
+                        <div class="report-attribute-secondary">
+                            <span class="report-value">@Model.Description</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+
+                        <span class="report-attribute-primary">Number of candidates known/believed to be involved (delete as appropriate): </span>
+                        <span class="report-value">@Model.TotalCandidates</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+
+                        <div class="report-attribute-primary">Date and time of exam session(s) known/believed to have been compromised (delete as appropriate):</div>
+                        <div class="report-attribute-secondary">
+                            Incident Date: <span class="report-value">@Model.IncidentDate.ToStringStandardFormat()</span>
+                        </div>
+                        <div class="report-attribute-secondary">
+                            Incident Time: <span class="report-value">@Model.IncidentTime</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="report-attribute-primary">Number of exam sessions known/believed to have been compromised (delete as appropriate): </span>
+                        <span class="report-value">
+                            1
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="report-attribute-primary">Number of candidates known/believed to have been affected per compromised exam session (delete as appropriate): </span>
+                        <span class="report-value">
+                            @((Model.NoOfCandidates.HasValue) ? Model.NoOfCandidates.Value.ToString() : "")
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="report-section">
+            <table>
+                <tr>
+                    <td>
+                        <div class="report-attribute-primary">Please complete and attach Annex A with the details of candidates known/believed to be involved.</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="report-section">
+            <table>
+                <tr>
+                    <td>
+                        <div class="report-attribute-primary">Please outline action being taken to further investigate the incident, with clear timelines for completion.</div>
+
+                        <div class="report-value">@Model.ImmediateActionTaken</div>
+
+                        <div>
+                            @if (@Model.IncidentActions != null || @Model.IncidentActions.Any())
+                            {
+
+                                foreach (var action in @Model.IncidentActions)
+                                {
+                                    <div class="report-attribute-primary">Action</div>
+                                        <p>@action.ActionDescription</p>
+                                    if (@action.ActionResponse != null)
+                                    {
+                                        <div class="report-attribute-primary">Response</div>
+                                            <p>@action.ActionResponse</p>
+                                    }
+                                }
+                            }
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="blank">
+                        <div class="report-attribute-primary">Please outline what steps are being taken to prevent future occurrences of the incident, including timescales.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="report-attribute-primary">Has the centre(s) been suspended? </span>
+                        <span class="report-value">No</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="report-attribute-primary">If no, provide details of how test integrity will be maintained during the investigation period.</div>
+                        <div class="report-value">Investigation Closed</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="report-attribute-primary">Date suspended: </span>
+                        <span class="report-value">N/A</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="report-attribute-primary">Date(s) of incidents:</div>
+                        <span class="report-attribute-secondary">Incident Date: </span>
+                        <span class="report-value">@Model.IncidentDate.ToStringStandardFormat() </span>
+                        <span class="report-attribute-secondary">Incident Time: </span>
+                        <span class="report-value">@Model.IncidentTime</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="report-section">
+            <table>
+                <tr>
+                    <td style="width: 150px">
+                        <div class="report-attribute-primary">Authorised by</div>
+                    </td>
+                    <td>
+                        <div class="report-value">&nbsp;</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+
+    </div>
+
+    <span>
+        <br clear="all" style="page-break-before:always;mso-break-type:section-break"/>
+    </span>
+
+    <div class="WordSection2">
+
+        <div style="margin-bottom: 20px;">APPENDIX A</div>
+
+        <table>
+            <tr>
+                <td class="appendix-table-header" style="width:200px">Test Centre Name:</td>
+                <td>@Model.TestCentreModel.Name</td>
+            </tr>
+            <tr>
+                <td class="appendix-table-header" style="width:200px">Test Centre Number</td>
+                <td>@Model.TestCentreModel.Code</td>
+            </tr>
+            <tr>
+                <td class="appendix-table-header" style="width:200px">Test Centre Address:</td>
+                <td>@Model.TestCentreModel.Address</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="appendix-table-header-small">Candidates Full name (As stated on the candidates ID)</td>
+                <td class="appendix-table-header-small">Candidates Unique Reference Number</td>
+                <td class="appendix-table-header-small">DOB</td>
+                <td class="appendix-table-header-small">Nationality</td>
+                <td class="appendix-table-header-small">Passport/ ID number</td>
+                <td class="appendix-table-header-small">Gender</td>
+                <td class="appendix-table-header-small">Full Address</td>
+                <td class="appendix-table-header-small">Date of Test</td>
+                <td class="appendix-table-header-small">Time of test</td>
+                <td class="appendix-table-header-small">Name of Test</td>
+                <td class="appendix-table-header-small">Result</td>
+                <td class="appendix-table-header-small">Have the test results been issued to the candidate</td>
+                <td class="appendix-table-header-small">Have the test results been withdrawn/cancelled</td>
+                <td class="appendix-table-header-small">Has the result been uploaded onto the online verification system?</td>
+                <td class="appendix-table-header-small">Reason for cancelling/ withholding scores</td>
+            </tr>
+            
+            
+            @if (!@Model.IncidentCandidates.Any())
+            {
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            }
+
+            @foreach (var candidate in @Model.IncidentCandidates)
+            {
+                <tr>
+                    <td class="appendix-table-value-small">@candidate.Firstnames @candidate.Surname</td>
+                    <td class="appendix-table-value-small">@candidate.Number</td>
+                    <td class="appendix-table-value-small">@candidate.DateOfBirth.ToStringStandardFormat()</td>
+                    <td class="appendix-table-value-small">@candidate.Nationality</td>
+                    <td class="appendix-table-value-small">@candidate.IdDocumentNumber</td>
+                    <td class="appendix-table-value-small">@candidate.Gender</td>
+                    <td class="appendix-table-value-small">@candidate.Address</td>
+                    <td class="appendix-table-value-small">@Model.IncidentDate.ToStringStandardFormat()</td>
+                    <td class="appendix-table-value-small">@Model.IncidentTime</td>
+                    <td class="appendix-table-value-small">@Model.Product</td>
+                    <td class="appendix-table-value-small">&nbsp;</td>
+                    <td class="appendix-table-value-small">No</td>
+                    <td class="appendix-table-value-small">No</td>
+                    <td class="appendix-table-value-small">No</td>
+                    <td class="appendix-table-value-small">&nbsp;</td>
+                </tr>
+            }
+        </table>
+
+    </div>
+
+</body>
+</html>
+
+
+

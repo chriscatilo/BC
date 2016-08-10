@@ -1,0 +1,15 @@
+﻿CREATE TABLE [dbo].[TestCentre] (
+	[Id] INT IDENTITY(1,1) PRIMARY KEY,
+	[CentreNumber] NVARCHAR (50) NULL,
+	[Name] NVARCHAR (255) NOT NULL,
+	[OrganisationId] INT NULL,
+	[AdminUnitId] INT NOT NULL,
+	[Address] NVARCHAR(2048) NULL,
+	[Administrator] NVARCHAR(100) NULL,
+	[PrimaryEmail] VARCHAR(100) NULL,
+	[SecondaryEmail] VARCHAR(100) NULL,
+	[IsActive] BIT DEFAULT 0 NOT NULL,
+	[LastUpdated] DATETIME NOT NULL, 
+    CONSTRAINT [FK_TestCentre_Organisation] FOREIGN KEY ([OrganisationId]) REFERENCES [dbo].[Organisation] ([Id]),
+	CONSTRAINT [FK_TestCentre_AdminUnit] FOREIGN KEY ([AdminUnitId]) REFERENCES [dbo].[AdminUnit] ([Id]),
+);

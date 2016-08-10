@@ -1,0 +1,262 @@
+﻿@{
+    Layout = null;
+}
+
+@using BC.EQCS.Models.Extensions
+@using BC.EQCS.Utils;
+@model BC.EQCS.Models.UkviImmediateReportModel
+
+<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office'
+      xmlns:w='urn:schemas-microsoft-com:office:word'
+      xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <title></title>
+    
+    <!--[if gte mso 9]><xml>
+                         <o:DocumentProperties>
+                             <o:Author>British Council (Global Information Services)</o:Author>
+                             <o:Template>Normal</o:Template>
+                             <o:LastAuthor>British Council (Global Information Services)</o:LastAuthor>
+                             <o:Company>British Council</o:Company>
+                             <o:Version>14.00</o:Version>
+                         </o:DocumentProperties>
+                     </xml>
+      <![endif]-->
+
+
+    <!--[if gte mso 9]>
+    <xml>
+    <w:WordDocument>
+    <w:View>Print</w:View>
+    <w:Zoom>100</w:Zoom>
+    <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+    </xml>
+    <![endif]-->
+
+
+    <style type="text/css">
+        table {
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 5px;
+        }
+
+      
+        .report-attribute-primary{
+                  font-weight: bold;
+        }
+        
+         .report-attribute-secondary {
+            }
+
+      .report-value {
+            font-weight: normal;
+        }
+
+      .blank {
+           padding-bottom: 50px;
+      }
+
+      .location-title-table
+      {
+          border: 0;
+            padding: 0;
+          text-align: left;
+      }
+
+      .location-title-table-label {
+          text-wrap: none;
+          width: 10%;
+      }
+
+       .location-title-table-label,
+       .location-title-table-data {          
+           vertical-align: top;
+           vert-align: top;
+           text-align: left;
+           border: 0;
+           padding: 0;
+
+       }
+    </style>
+
+</head>
+    <body>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            SERVICE LEVEL FAILURE
+        </div>
+
+    <table>
+        <tr>
+            <td>
+                <div class="report-attribute-primary">Unique report number:</div>
+                <div class="report-value">@Model.FormalId</div> 
+            </td>
+            <td>
+                <div class="report-attribute-primary">Date report received:</div>
+                <div class="report-value">@Model.CreateDate.ToStringStandardFormat()</div> 
+            </td>
+            <td>
+                <div class="report-attribute-primary">Time report received:</div>
+                <div class="report-value">@Model.CreateDate.ToShortTimeString()</div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                
+                <div class="report-attribute-primary">
+                    Location of the service failure:
+                </div>
+
+                <div class="report-attribute-secondary">
+                    Organisation:
+                    <span class="report-value">@Model.ReferringOrgName</span>
+                </div>
+
+                <div class="report-attribute-secondary">
+                    <table border="0" class="location-title-table">
+                        <tr>
+                            <td class="location-title-table-label" nowrap="true">Centre Number and Location:</td>
+                            <td class="location-title-table-data"><span class="report-value">@Model.TestCentreModel.Code, @Model.TestLocationModel.Name</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="report-attribute-secondary">
+                    <strong>Location Address:</strong><br/>
+                    <span class="report-value">@Html.Raw(Model.TestLocationModel.ToLineBreakFormat("<br/>"))</span>
+
+                </div>
+
+                <div class="report-attribute-secondary">
+                    <strong>Test Date:</strong><br />
+                    <span class="report-value">@Model.TestDate.ToStringStandardFormat()</span>
+                </div>
+
+                
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="report-attribute-primary">Nature of the service failure:</div>
+
+                <div class="report-attribute-secondary">
+                    Product:
+                    <span class="report-value">@Model.Product</span>
+                </div>
+
+                <div class="report-attribute-secondary">
+                    Incident Date and Time:
+                    <span class="report-value">@Model.IncidentDate.ToStringStandardFormat() @Model.IncidentTime</span>
+                </div>
+
+                <div class="report-value">@Model.Description</div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="report-attribute-primary">Report originated by (include name and position in organisation)</div>
+                <div class="report-value">@Model.LoggedByUser (@Model.LoggedByUserRole)</div> 
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="report-attribute-primary">Estimate number of candidates affected by the failure:</div>
+                <div class="report-value">@((Model.NoOfCandidates.HasValue) ? Model.NoOfCandidates.Value.ToString() : "")</div>
+            </td>
+            <td colspan="2">
+                <div class="report-attribute-primary">Estimate number of test centres affected by the failure:</div>
+                <div class="report-value">1</div> 
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                <div class="report-attribute-primary">Immediate and intended action to be taken to rectify the service failure:</div>
+                <div class="report-value">@Model.ImmediateActionTaken</div> 
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                <div class="report-attribute-primary">Details of any communication with the Home Office in connection with the service failure(s):</div>
+                <div class="report-value">None - This is the first notification</div> 
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                <div class="report-attribute-primary">Notes/comments for any mitigating circumstances regarding the service failure(s):</div>
+                <div class="report-value">None</div> 
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                <div class="report-attribute-primary">Plans for remedying the service failure(s):</div>
+                <div class="report-attribute-secondary">
+                    <div>
+                        @if (@Model.IncidentActions != null || @Model.IncidentActions.Any())
+                        {
+
+                            foreach (var action in @Model.IncidentActions)
+                            {
+                                <div class="report-attribute-primary">Action</div>
+                                <p>@action.ActionDescription</p>
+                                if (@action.ActionResponse != null)
+                                {
+                                    <div class="report-attribute-primary">Response</div>
+                                    <p>@action.ActionResponse</p>
+                                }
+                            }
+                        }
+                    </div>
+
+                    </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3" class="blank">
+                <div class="report-attribute-primary">Plans for preventing the service failure(s) from re-occurring, include details where applicable of the estimated time within such service failure will be remedied:</div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                <div class="report-attribute-primary">Reasons for any inability to meet the relevant service levels so as to resolve the service failure(s):</div>
+                <div class="report-value">None</div> 
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                <div class="report-attribute-primary">Has a compromised Test Notification also been completed?</div>
+                <div class="report-value">No</div> 
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                <div class="report-attribute-primary">Date submitted:</div>
+                <div>@DateTime.UtcNow.ToStringStandardFormat()</div> 
+            </td>
+        </tr>
+
+    </table>
+</body>
+</html>
+

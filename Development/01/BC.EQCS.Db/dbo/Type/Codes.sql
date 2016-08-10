@@ -1,0 +1,6 @@
+﻿CREATE TYPE dbo.Codes
+AS TABLE
+(
+  Value VARCHAR(25)
+);
+GO

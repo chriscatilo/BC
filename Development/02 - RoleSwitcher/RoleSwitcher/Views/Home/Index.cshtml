@@ -1,0 +1,272 @@
+﻿@using System.Web.Mvc.Html
+@using RoleSwitcher.Models
+@model  RoleSwitcher.Models.Page
+
+
+@functions{
+
+
+
+    public bool IsAuthorised(string shortCode, List<Asset> assets )
+    {   
+            foreach (var currentAsset in assets)
+            {
+                if (currentAsset.ShortCode == shortCode)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
+    }
+}
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    form {
+
+        float: left;
+        clear: both;
+    }
+    select {
+        margin-top: 8px;
+        margin-bottom: 8px;
+        float: left;
+        margin-right: 20px;
+    }
+
+    h2, h3 {
+        float: left;
+        width: 100%;
+        margin-top: 0;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    h2 {
+        font-size: 16px;
+        clear: both;
+        width: 100%;
+    }
+
+    label {
+        float: left;
+        margin-top: 8px;
+        margin-right: 10px;
+    }
+
+
+    .editUserDetails,
+    .addUserRoleForm {
+        float: left;
+        border: 1px dotted grey;
+        width: 80%;
+        padding: 10px;
+    }
+
+
+    body {
+        padding-left: 50px;
+    }
+    .message {
+        color: red;
+        font-weight: bold;
+        width: 80%;
+        text-align: center;
+        padding-top: 5px;
+        padding-bottom: 15px;
+    }
+
+    .addUserRoleForm {
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+
+    .selectUserForm {
+        margin-bottom: 20px;
+    }
+
+
+    .selectUserForm h2 {
+        margin-right: 20px;
+        margin-top: 10px;
+    }
+
+    .userRole {
+        float: left;
+        width: 100%;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .deleteButton,
+    .updateButton {
+        float: left;
+        margin-right: 20px;
+        margin-top: 4px;
+    }
+
+    .deleteButton {
+        margin-top: 6px;
+    }
+
+
+    #RolesDefinition thead th,
+    #RolesDefinition tr tbody th {
+        text-align: center;
+    }
+
+    #RolesDefinition tbody tr td {
+        width: 200px;
+        text-align: center;
+    }
+
+    #RolesDefinition tbody td.True {
+        color: green;
+    }
+
+    #RolesDefinition tbody td.False {
+        color: red;
+    }
+
+    #RolesDefinition .roleType {
+        text-align: left;
+        width: 20%;
+    }
+</style>
+
+
+<div class="message">@Model.Message</div>
+
+    <div class="editUserDetails">
+
+
+        <form name="selectUserForm" action="~/Home/Index" class="selectUserForm">
+            <h2>Edit Role</h2>
+
+            <label>Change role for</label>
+
+            <select name="userId" onchange="document.selectUserForm.submit() ">
+                <option></option>
+                @foreach (var user in Model.AllUsers)
+                {
+                    <option @((Model.UserId == user.Id) ? "selected" : String.Empty) value="@user.Id">@user.FirstName @user.Surname</option>
+                }
+            </select>
+        </form>
+
+        @if (Model.UserId != 0)
+        {
+        
+        <h3>Role</h3>
+
+        foreach (var userRole in Model.UserRoles)
+        {
+            <form action="~/Home/Update">
+
+
+                <div class="userRole">
+                    <input type="hidden" name="userId" value="@Model.UserId" />
+
+                    <select name="roleId">
+                        @foreach (var role in Model.AllRoles)
+                        {
+                            <option @((userRole.Role.Id == role.Id) ? "selected" : String.Empty) value="@role.Id">@role.Name</option>
+                        }
+                    </select>
+
+                    <select name="adminUnitId">
+                        @foreach (var item in Model.AllAdminUnits)
+                        {
+                            <option value="@item.Value" @((userRole.AdminUnit.Id.ToString() == item.Value) ? "selected" : String.Empty)>@Html.Raw(item.Text)</option>
+                        }
+                    </select>
+                    
+                    <input type="hidden" name="originalUserId" value="@userRole.User.Id" />
+                    <input type="hidden" name="originalRoleId" value="@userRole.Role.Id" />
+                    <input type="hidden" name="originalAdminUnitId" value="@userRole.AdminUnit.Id" />
+
+                    <input type="submit" value="Update" class="updateButton" />
+
+                    <a href="~/Home/Delete?userId=@userRole.User.Id&roleId=@userRole.Role.Id&adminUnitId=@userRole.AdminUnit.Id" class="deleteButton">Delete</a>
+                </div>
+            </form>
+
+        }
+    }
+    </div>
+    
+    <form action="~/Home/Add" class="addUserRoleForm">
+         <h2>Add role to user</h2>
+  
+
+        <select name="userId">
+
+            @foreach (var user in Model.AllUsers)
+            {
+                <option value="@user.Id" @((Model.UserId == user.Id) ? "selected" : String.Empty)>@user.FirstName @user.Surname</option>
+            }
+        </select>
+
+        <select name="roleId">
+            @foreach (var role in Model.AllRoles)
+            {
+                <option value="@role.Id">@role.Name</option>
+            }
+        </select>
+
+        <select name="adminUnitId">
+            @foreach (var item in Model.AllAdminUnits)
+            {
+                <option value="@item.Value">@Html.Raw(item.Text)</option>
+            }
+
+        </select>
+
+
+        <input type="submit" value="Add" />
+   
+    </form>
+
+        
+
+
+<h2>Roles Definition</h2>
+<table id="RolesDefinition">
+@{ var lastType = String.Empty;}
+@foreach (var asset in Model.AllAssets)
+{
+
+    if (lastType != asset.Type)
+    {
+
+    <thead>
+        <tr><th><br /></th></tr>
+        <tr>
+            <th class="roleType">@asset.Type.Replace("_", " ")</th>
+            @foreach (var role in Model.AllRoles)
+            {
+                <th>@role.Name</th>
+            }
+        </tr>
+    </thead>
+    }
+
+    <tr>
+        <th>@asset.Name <small style="font-size: xx-small">( @asset.ShortCode )</small></th>
+        @foreach (var role in Model.AllRoles)
+        {
+
+            var isAuthorised = IsAuthorised(asset.ShortCode, role.Assets);
+
+
+            <td class="@isAuthorised.ToString()">@Html.Raw(isAuthorised ? "&#10004;" : "&#x2718;")</td>
+        }
+    </tr>
+    lastType = asset.Type;
+}           
+</table>
+      
+

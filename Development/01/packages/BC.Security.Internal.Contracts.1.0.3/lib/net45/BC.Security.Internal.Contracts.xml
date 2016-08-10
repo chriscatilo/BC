@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BC.Security.Internal.Contracts</name>
+    </assembly>
+    <members>
+        <member name="T:BC.Security.Internal.Contracts.Models.ClientUserModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BC.Security.Internal.Contracts.Models.UserModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BC.Security.Internal.Contracts.Models.ClientUserModel.GetClaimsIdentity">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="T:BC.Security.Internal.Contracts.Models.RoleModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BC.Security.Internal.Contracts.Models.RoleModel.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BC.Security.Internal.Contracts.Models.RoleModel.Permissions">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

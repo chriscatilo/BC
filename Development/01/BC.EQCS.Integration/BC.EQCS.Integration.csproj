@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9F70FA33-226B-487D-9F43-D5E05F541900}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BC.EQCS.Integration</RootNamespace>
+    <AssemblyName>BC.EQCS.Integration</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <DontImportPostSharp>True</DontImportPostSharp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'InternalDebug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\InternalDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'InternalRelease|AnyCPU'">
+    <OutputPath>bin\InternalRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ExternalDebug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ExternalDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ExternalRelease|AnyCPU'">
+    <OutputPath>bin\ExternalRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|AnyCPU'">
+    <OutputPath>bin\Development\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BC.StructureMap.Owin, Version=1.0.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BC.StructureMap.Owin.1.0.14\lib\net45\BC.StructureMap.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastMember">
+      <HintPath>..\packages\FastMember.1.0.0.11\lib\net40\FastMember.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\packages\FluentAssertions.3.3.0\lib\net45\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions.Core">
+      <HintPath>..\packages\FluentAssertions.3.3.0\lib\net45\FluentAssertions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.5.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="LoremNET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Lorem.NET.1.0.5\lib\net40\LoremNET.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.HttpListener, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.3.0.1\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Hosting, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Hosting.3.0.1\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.8.1.0\lib\net45\NSubstitute.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp, Version=4.1.12.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PostSharp.4.1.12\lib\net35-client\PostSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.3.1.4.143\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4">
+      <HintPath>..\packages\structuremap.3.1.4.143\lib\net40\StructureMap.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Web">
+      <HintPath>..\packages\structuremap.web.3.1.0.133\lib\net40\StructureMap.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.OData">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.5.1\lib\net45\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client.Action.cs">
+      <DependentUpon>Client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client.Candidate.cs">
+      <DependentUpon>Client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Document\CreateDocument_TestsSteps.cs" />
+    <Compile Include="Document\CreateDocument_Tests.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateDocument_Tests.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Document\DocumentSpecFlowContextWrapper.cs" />
+    <Compile Include="Document\GetDocument.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetDocument.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Document\GetDocumentSteps.cs" />
+    <Compile Include="Document\RemoveDocument.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RemoveDocument.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Document\RemoveDocumentSteps.cs" />
+    <Compile Include="IncidentAction\RaceConditions.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RaceConditions.feature</DependentUpon>
+    </Compile>
+    <Compile Include="IncidentAction\RaceConditionsSteps.cs" />
+    <Compile Include="IncidentActivityLogFeature\IncidentActivityLoggerAspectTests.cs" />
+    <Compile Include="Client.IncidentActions.cs">
+      <DependentUpon>Client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client.UserActions.cs">
+      <DependentUpon>Client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IncidentCandidate\RaceConditions.feature.cs">
+      <DependentUpon>RaceConditions.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="IncidentCandidate\RaceConditionsSteps.cs" />
+    <Compile Include="IncidentList\IncidentsListingControllerTests.cs" />
+    <Compile Include="IncidentList\IncidentsListView.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IncidentsListView.feature</DependentUpon>
+    </Compile>
+    <Compile Include="IncidentList\IncidentsListViewSteps.cs" />
+    <Compile Include="Incident\IncidentRaceConditionsSteps.cs" />
+    <Compile Include="Incident\AcceptRejectIncident.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AcceptRejectIncident.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Incident\AcceptRejectIncidentSteps.cs" />
+    <Compile Include="Incident\ActivityLogSteps.cs" />
+    <Compile Include="Incident\CloseIncident.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CloseIncident.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Incident\CloseIncidentSteps.cs" />
+    <Compile Include="Incident\DeleteIncident.feature.cs">
+      <DependentUpon>DeleteIncident.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="GenericSteps.cs" />
+    <Compile Include="Incident\GivenIncident.cs" />
+    <Compile Include="Incident\GivenIncidentCandidate.cs" />
+    <Compile Include="Incident\IncidentBackgroundSteps.cs" />
+    <Compile Include="Incident\IncidentRaceConditions.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IncidentRaceConditions.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Incident\IncidentSpecFlowContextWrapper.Action.cs">
+      <DependentUpon>IncidentSpecFlowContextWrapper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Incident\IncidentSpecFlowContextWrapper.Candidate.cs">
+      <DependentUpon>IncidentSpecFlowContextWrapper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Incident\IncidentSpecFlowContextWrapper.cs" />
+    <Compile Include="Incident\IncidentSpecFlowContextWrapper.Incident.cs">
+      <DependentUpon>IncidentSpecFlowContextWrapper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Incident\ManageCandidates.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ManageCandidates.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Incident\ManageCandidatesSteps.cs" />
+    <Compile Include="Incident\ReopenIncident.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReopenIncident.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Incident\ReopenIncidentSteps.cs" />
+    <Compile Include="Incident\SaveUkviImmediateReport.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SaveUkviImmediateReport.feature</DependentUpon>
+    </Compile>
+    <Compile Include="ModelValidatorTest.cs" />
+    <Compile Include="Security\AdministerUser.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdministerUser.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Security\UserAdminTests.cs" />
+    <Compile Include="Startup\TestDataSeeder.cs" />
+    <Compile Include="Utils\HttpResponseMessageExtensions.cs" />
+    <Compile Include="Utils\SpecFlowContextWrapper.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="Incident\DeleteIncidentSteps.cs" />
+    <Compile Include="Incident\RaiseIncident.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RaiseIncident.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Incident\RaiseIncidentSteps.cs" />
+    <Compile Include="Startup\SetUp.cs" />
+    <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup\SelfHosting.cs" />
+    <Compile Include="Startup\SelfHostUI.cs" />
+    <Compile Include="Startup\Startup.cs" />
+    <Compile Include="Utils\DomainChecker.cs" />
+    <Compile Include="Utils\SpecflowTableHelper.cs" />
+    <Compile Include="Utils\UriExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Compile Include="Client.Document.cs" />
+    <None Include="Default.srprofile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Document\CreateDocument_Tests.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateDocument_Tests.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Document\GetDocument.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetDocument.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Document\RemoveDocument.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RemoveDocument.feature.cs</LastGenOutput>
+    </None>
+    <None Include="IncidentAction\RaceConditions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RaceConditions.feature.cs</LastGenOutput>
+    </None>
+    <None Include="IncidentCandidate\RaceConditions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RaceConditions.feature.cs</LastGenOutput>
+    </None>
+    <None Include="IncidentList\IncidentsListView.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>IncidentsListView.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Incident\AcceptRejectIncident.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AcceptRejectIncident.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Incident\CloseIncident.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CloseIncident.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Incident\DeleteIncident.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteIncident.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Incident\IncidentRaceConditions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>IncidentRaceConditions.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Incident\ManageCandidates.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ManageCandidates.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Incident\RaiseIncident.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RaiseIncident.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Incident\ReopenIncident.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ReopenIncident.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Incident\SaveUkviImmediateReport.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SaveUkviImmediateReport.feature.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="runtests.cmd" />
+    <None Include="Security\AdministerUser.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AdministerUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="SpecRunTestProfile.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BC.EQCS.ActivityLog\BC.EQCS.ActivityLog.csproj">
+      <Project>{2380FA08-6F69-43FC-85CF-9FE0BF1EE393}</Project>
+      <Name>BC.EQCS.ActivityLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Contracts\BC.EQCS.Contracts.csproj">
+      <Project>{4D8A39B2-767F-44AC-AD76-4739C51E9F39}</Project>
+      <Name>BC.EQCS.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Domain\BC.EQCS.Domain.csproj">
+      <Project>{D48F5AD2-32F9-4E41-9A3C-EA3B33E3B83C}</Project>
+      <Name>BC.EQCS.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Entities\BC.EQCS.Entities.csproj">
+      <Project>{b5bcfbf3-5ef9-40fb-b624-85fa89089a5d}</Project>
+      <Name>BC.EQCS.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Models.Enums\BC.EQCS.Models.Enums.csproj">
+      <Project>{68393f44-b52b-4bd0-b1a0-75835bbd8178}</Project>
+      <Name>BC.EQCS.Models.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Models\BC.EQCS.Models.csproj">
+      <Project>{5A296B6D-B5DA-4117-8F24-F2E66637C6B1}</Project>
+      <Name>BC.EQCS.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Repositories\BC.EQCS.Repositories.csproj">
+      <Project>{F3D4AD6D-EFE4-4CAE-8FE8-061F49721EB1}</Project>
+      <Name>BC.EQCS.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Security\BC.EQCS.Security.csproj">
+      <Project>{c05d97cf-8b54-4141-bc7e-9048f4ef4052}</Project>
+      <Name>BC.EQCS.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.UnitTests\BC.EQCS.UnitTests.csproj">
+      <Project>{abcaee98-c1c8-46a9-979d-3720f0c0af2c}</Project>
+      <Name>BC.EQCS.UnitTests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Utils\BC.EQCS.Utils.csproj">
+      <Project>{6255022E-D07D-4DC0-8615-FD3BD175FBDC}</Project>
+      <Name>BC.EQCS.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Web\BC.EQCS.Web.csproj">
+      <Project>{B35A5E86-A9AE-4719-98DC-5B5D5767944A}</Project>
+      <Name>BC.EQCS.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Workflow\BC.EQCS.Workflow.csproj">
+      <Project>{CF4E726F-00DD-4095-809B-14E630884D47}</Project>
+      <Name>BC.EQCS.Workflow</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="..\packages\PostSharp.4.1.12\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.1.12\tools\PostSharp.targets')" />
+  <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
+    <Error Condition="!Exists('..\packages\PostSharp.4.1.12\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
+    <Error Condition="Exists('..\packages\PostSharp.4.1.12\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

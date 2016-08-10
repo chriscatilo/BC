@@ -1,0 +1,24 @@
+﻿<menu-tabs menu-items="vm.config.app.menu" menu-active="vm.config.activeMenu" menus-visible="vm.config.menusVisible"></menu-tabs>
+<script type="text/javascript">
+    //set current to the "en-GB" culture script
+    kendo.culture("en-GB");
+</script>
+    <div id="tabStrip" kendo-tab-strip k-options="tabStripOptions" k-content-urls="[null, null]" class="tabStrip" style="margin-top: 50px;">
+        <ul>
+            <li>Incidents with open actions</li>
+            <li class="k-state-active">Live Incidents</li>
+            <li>Closed Incidents</li>
+        </ul>
+        <div class="grid-wrapper tabSection">
+            <!--<p class="notice">N.B. Entries with a highlighted incident number, are those incidents raised by you.</p>-->
+            <kendo-grid options="incidentActionsActiveListGridOptions" k-rebind="incidentActionsActiveListGridOptions" k-data-source="incidentActionsActiveListDataSource"></kendo-grid>
+        </div>
+        <div class="grid-wrapper tabSection">
+            <!--<p class="notice">N.B. Entries with a highlighted incident number, are those incidents raised by you.</p>-->
+            <kendo-grid options="liveIncidentsListGridOptions" k-rebind="liveIncidentsListGridOptions" k-data-source="liveIncidentsListDataSource"></kendo-grid>
+        </div>
+        <div class="grid-wrapper tabSection">
+            <!--<p class="notice">N.B. Entries with a highlighted incident number, are those incidents raised by you.</p>-->
+            <kendo-grid options="closedIncidentsListGridOptions" k-rebind="closedIncidentsListGridOptions" k-data-source="closedIncidentsListDataSource"></kendo-grid>
+        </div>
+    </div>

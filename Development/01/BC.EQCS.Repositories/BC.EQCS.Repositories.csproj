@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F3D4AD6D-EFE4-4CAE-8FE8-061F49721EB1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BC.EQCS.Repositories</RootNamespace>
+    <AssemblyName>BC.EQCS.Repositories</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <DontImportPostSharp>True</DontImportPostSharp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'InternalDebug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\InternalDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'InternalRelease|AnyCPU'">
+    <OutputPath>bin\InternalRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ExternalDebug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ExternalDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ExternalRelease|AnyCPU'">
+    <OutputPath>bin\ExternalRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|AnyCPU'">
+    <OutputPath>bin\Development\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp, Version=4.1.12.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\PostSharp.4.1.12\lib\net35-client\PostSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.OData">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.5.1\lib\net45\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cache.cs" />
+    <Compile Include="UkviImmediateReportTypeRepository.cs" />
+    <Compile Include="DocumentRepository.cs" />
+    <Compile Include="IncidentActionListingODRepository.cs" />
+    <Compile Include="IncidentActionViewRepository.cs" />
+    <Compile Include="IncidentActivityListingODataRepository.cs" />
+    <Compile Include="IncidentCandidateViewRepository.cs" />
+    <Compile Include="IncidentActionRepository.cs" />
+    <Compile Include="IncidentClassRepository.cs" />
+    <Compile Include="AdminUnitRepository.cs" />
+    <Compile Include="IncidentMasterRepository.cs" />
+    <Compile Include="IncidentRepository.cs" />
+    <Compile Include="IncidentCandidateRepository.cs" />
+    <Compile Include="IncidentViewRepository.cs" />
+    <Compile Include="NotificationMessageRepository.cs" />
+    <Compile Include="NotificationMessageTemplateRepository.cs" />
+    <Compile Include="OdataRepository.cs" />
+    <Compile Include="OrganisationRepository.cs" />
+    <Compile Include="OrganisationTypeRepository.cs" />
+    <Compile Include="PermissionsRepository.cs" />
+    <Compile Include="ResidualRiskRatingRepository.cs" />
+    <Compile Include="SchemaKeyRepository.cs" />
+    <Compile Include="Security\AssetRepository.cs" />
+    <Compile Include="AsyncRepository.cs" />
+    <Compile Include="CountryRepository.cs" />
+    <Compile Include="IncidentActivityLogRepository.cs" />
+    <Compile Include="IncidentListingODataRepository.cs" />
+    <Compile Include="ProductRepository.cs" />
+    <Compile Include="RiskRatingRepository.cs" />
+    <Compile Include="Security\ActiveDirectoryResultsLimitExceeded.cs" />
+    <Compile Include="Security\ActiveDirectoryUserRepository.cs" />
+    <Compile Include="Security\ApplicationUserNotFoundException.cs" />
+    <Compile Include="Security\IActiveDirectoryUserRepository.cs" />
+    <Compile Include="Security\RoleRepository.cs" />
+    <Compile Include="Security\RolesRepository.cs" />
+    <Compile Include="Security\SearchFilter.cs" />
+    <Compile Include="Security\UserAlreadyExistsException.cs" />
+    <Compile Include="Security\UserNotFoundException.cs" />
+    <Compile Include="Security\UserRepository.cs" />
+    <Compile Include="TestCentreRepository.cs" />
+    <Compile Include="TestLocationRepository.cs" />
+    <Compile Include="TreeRepository.cs" />
+    <Compile Include="Utils\ApplicationUsersExtensions.cs" />
+    <Compile Include="Utils\SearchResultExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="Utils\SqlHelper.cs" />
+    <Compile Include="Utils\TreeNodeExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BC.EQCS.Contracts\BC.EQCS.Contracts.csproj">
+      <Project>{4D8A39B2-767F-44AC-AD76-4739C51E9F39}</Project>
+      <Name>BC.EQCS.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.DataTransfer\BC.EQCS.DataTransfer.csproj">
+      <Project>{02050247-769d-40a3-a6d4-5195e33dff2d}</Project>
+      <Name>BC.EQCS.DataTransfer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Entities\BC.EQCS.Entities.csproj">
+      <Project>{b5bcfbf3-5ef9-40fb-b624-85fa89089a5d}</Project>
+      <Name>BC.EQCS.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Models.Enums\BC.EQCS.Models.Enums.csproj">
+      <Project>{68393f44-b52b-4bd0-b1a0-75835bbd8178}</Project>
+      <Name>BC.EQCS.Models.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Models.Extensions\BC.EQCS.Models.Extensions.csproj">
+      <Project>{F3E6BAB6-C6DC-4B44-B8D6-B9E461AF0A69}</Project>
+      <Name>BC.EQCS.Models.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Models\BC.EQCS.Models.csproj">
+      <Project>{5A296B6D-B5DA-4117-8F24-F2E66637C6B1}</Project>
+      <Name>BC.EQCS.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Notifications\BC.EQCS.Notifications.csproj">
+      <Project>{b2ec619c-22ea-4275-92a8-ea97c5e7436f}</Project>
+      <Name>BC.EQCS.Notifications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Security\BC.EQCS.Security.csproj">
+      <Project>{c05d97cf-8b54-4141-bc7e-9048f4ef4052}</Project>
+      <Name>BC.EQCS.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BC.EQCS.Utils\BC.EQCS.Utils.csproj">
+      <Project>{6255022E-D07D-4DC0-8615-FD3BD175FBDC}</Project>
+      <Name>BC.EQCS.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <Import Project="..\packages\PostSharp.4.1.12\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.1.12\tools\PostSharp.targets')" />
+  <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
+    <Error Condition="!Exists('..\packages\PostSharp.4.1.12\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
+    <Error Condition="Exists('..\packages\PostSharp.4.1.12\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

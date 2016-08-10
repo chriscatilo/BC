@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="EQCS" duration-ms="12523" started-at="2015-05-15T08:03:40Z" finished-at="2015-05-15T08:03:52Z">
+    <groups>
+    </groups>
+    <test name="Role" duration-ms="12523" started-at="2015-05-15T08:03:40Z" finished-at="2015-05-15T08:03:52Z">
+      <class name="com.qtpselenium.hybrid.testcases.Role">
+        <test-method status="PASS" signature="BuildingManagementTest(java.util.Hashtable)[pri:0, instance:com.qtpselenium.hybrid.testcases.Role@33746634]" name="BuildingManagementTest" duration-ms="11690" started-at="2015-05-15T13:33:41Z" data-provider="getshareData" finished-at="2015-05-15T13:33:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{RunMode=Y, addrole=Verifications Team, product=IELTS-For UKVI, region=Monolit Plaza, addroleuser=Vaibhav Srivastava, role=Ankur Srivastava}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BuildingManagementTest -->
+      </class> <!-- com.qtpselenium.hybrid.testcases.Role -->
+    </test> <!-- Role -->
+  </suite> <!-- EQCS -->
+</testng-results>

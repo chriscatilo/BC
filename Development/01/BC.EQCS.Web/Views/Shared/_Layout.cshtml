@@ -1,0 +1,111 @@
+﻿@using System.Web.Configuration
+@using BC.EQCS.Security.Constants
+@using BC.EQCS.Web.Infrastructure
+@using BC.EQCS.Web.Utils
+@model BC.EQCS.Web.Models.ViewModel
+@{
+    var authoriser = new AuthoriserFactory().Create();
+}
+<!DOCTYPE html>
+<html lang="en" ng-app="@(Model != null ? Model.NgApp : string.Empty)">
+<head>
+    <base href="@(Model != null ? Model.BaseRoute : "/")">
+    <meta charset="utf-8">
+    <title>Exams Quality &amp; Compliance System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <![endif]-->
+    @Styles.Render("~/Content/css/eqcs")
+    @Styles.Render("~/Content/css/kendo/eqcs")
+</head>
+<body>
+    <div class="application-info-panel col-lg-12">
+        @if (!string.IsNullOrEmpty(WebConfigurationManager.AppSettings["application.Environment"]))
+        {
+            <div class="application-info">
+                Environment : @WebConfigurationManager.AppSettings["application.Environment"]
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(WebConfigurationManager.AppSettings["application.ReleaseNumber"]))
+        {
+            <div class="application-info">
+                ReleaseNumber Number : @WebConfigurationManager.AppSettings["application.ReleaseNumber"]
+            </div>
+        }
+    </div>
+    <section class="site-header navbar navbar-fixed-top navbar-default">
+        <div class="container">
+            <div class="col-lg-12">
+                <div class="navbar-header">
+                    <span class="navbar-brand"></span>
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    @*Feature Commands*@
+                    <ul class="nav navbar-nav">
+                        @if (authoriser.IsAuthorised(AssetType.IncidentModuleAccess))
+                        {
+                            <li class="@(Model != null && Model.ActiveMenu == "incident" ? "active" : string.Empty)">
+                                <a href="/incident/home">Incident</a>
+                            </li>
+                        }
+
+                        @if (authoriser.IsAuthorised(AssetType.AuditModuleAccess))
+                        {
+                            <li class="@(Model != null && Model.ActiveMenu == "auditing" ? "active" : string.Empty)">
+                                <a href="/auditing/home">Auditing</a>
+                            </li>
+                        }
+                    </ul>
+                    @*Admin & Logoff*@
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (authoriser.IsAuthorised(AssetType.UserAdminModuleAccess))
+                        {
+                            <li class="@(Model != null && Model.ActiveMenu == "useradmin" ? "active" : string.Empty)">
+                                <a href="/useradmin/home">Admin</a>
+                            </li>
+                        }
+                        @if (!AuthenticationChecker.UseWindowsAuthOnly())
+                        {
+                            if (Request.IsAuthenticated)
+                            {
+                                <li>
+                                    <form action="/account/logoff" method="post" role="form" novalidate="novalidate">
+                                        <input type="submit" value="Log off" />
+                                    </form>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Log in", "Login", "Account", null, new { id = "loginLink" })</li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/utils")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/thirdparty")
+    @Scripts.Render("~/bundles/eqcs-app")
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button': 'true'}"></toaster-container>
+    <div wc-overlay wc-overlay-delay="300" class="site-overlay">
+        <img src="../../Content/Img/loader.gif" width="120" />
+    </div>
+</body>
+</html>
+
+@{ var rolesDebugHelper = new RolesDebugHelper(); }
+
+@if (rolesDebugHelper.IsRolesDebugActivated)
+{
+    @Html.Partial("_RolesDebuging")
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [EQCS]">
+  <test name="Role(failed)">
+    <classes>
+      <class name="com.qtpselenium.hybrid.testcases.Role">
+        <methods>
+          <include name="BuildingManagementTest" invocation-numbers="0 1"/>
+        </methods>
+      </class> <!-- com.qtpselenium.hybrid.testcases.Role -->
+    </classes>
+  </test> <!-- Role(failed) -->
+</suite> <!-- Failed suite [EQCS] -->

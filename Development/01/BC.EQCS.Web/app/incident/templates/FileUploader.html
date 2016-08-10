@@ -1,0 +1,47 @@
+﻿<form name="FileUploaderForm" class="FileUploaderForm">
+    <div id="FileUploaderContainer" class="FileUploaderContainer">
+        <div class="col-md-9" style="width: 100%">
+            <table>
+                <tr>
+                    <td><input id="fileInput" type="file" nv-file-select="" uploader="uploader" ng-click="reset()"></td>
+                    <td>
+                        <span class="fileCount">Files : {{ uploader.queue.length }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Supported file formats(<span style="color: red; font-weight: bold">PDF, JPG, DOC or DOCX</span>)</span>
+                    </td>
+                </tr>
+            </table>
+            <div style="width: 97%; height: 100px; overflow: auto;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th width="85%">File</th>
+                            <th style="text-align: right;">Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in uploader.queue">
+                            <td><strong>{{ item.file.name }}</strong></td>
+                            <td nowrap style="text-align: right;">
+                                <!--This is going to be for the next release
+                                Api to expose to remove item
+                                Remove the item from the list-->
+                                <img src="../../../Content/Img/delete.png" ng-click="item.remove()" style="margin-right: 6px; cursor: pointer;"/>
+                                <img src="../../../Content/Img/download.png" ng-click="item.download()" ng-disabled="!item.isUploading" style="cursor: pointer;" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                Progress:
+                <div class="progress" style="width: 97%">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,5 @@
+﻿CREATE TABLE [stage].[Region] (
+	[Code] VARCHAR (255) PRIMARY KEY NOT NULL,
+	[Name] VARCHAR (255) NOT NULL
+);
+

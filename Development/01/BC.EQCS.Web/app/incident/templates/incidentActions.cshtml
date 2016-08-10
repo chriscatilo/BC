@@ -1,0 +1,93 @@
+﻿@using BC.EQCS.Security.Constants
+@using BC.EQCS.Web.Infrastructure
+@{
+    var authorisor = new AuthoriserFactory().Create();
+}
+<menu-tabs menu-items="vm.config.app.menu" menu-active="vm.config.activeMenu"
+           tab-items="vm.config.app.incidentTabs" tab-active="vm.config.activeTab"
+           tab-param="vm.model.incidentId" show-tabs="vm.model.incidentId" visible-tabs="vm.config.app.visibleIncidentTabs" menus-visible="vm.config.menusVisible">
+</menu-tabs>
+
+<style>
+    .k-grid-header {
+        padding-top: 50px;
+    }
+</style>
+
+<script>
+
+</script>
+
+<kendo-grid options="incidentActionsListGridOptions" k-data-source="incidentActionsListDataSource"></kendo-grid>
+
+@if (authorisor.IsAuthorised(AssetType.IncidentAddAction) || authorisor.IsAuthorised(AssetType.IncidentUpdateAction))
+{
+    <section class='site-footer'>
+        <div class="commands">
+            <div class="container">
+                <div class="col-lg-12">
+                    <button class="btn btn-primary btn-lg" ng-show="!win1visible && addActionAvailable" ng-click="openActionForm('win1'); actionFormMode = 'create';">Assign Action</button>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@if (authorisor.IsAuthorised(AssetType.IncidentAddAction) || authorisor.IsAuthorised(AssetType.IncidentUpdateAction) || authorisor.IsAuthorised(AssetType.IncidentRespondAction))
+{
+    <form name="actionForm" novalidate ng-show="actionFormVisible" class="actionForm">
+        <div class="overlay" ng-click="closeActionForm()"></div>
+        <section class="site-footer">
+            <div class="actionContent">
+                <fieldset class="container">
+                    <legend>
+                        <span>Action details</span>
+                        <client-validation-errors form="actionForm" errors="IncidentActionForm.errors"></client-validation-errors>
+                    </legend>
+
+                    <div class="row">
+                        <file-uploader class="col-xs-6" ngcontainermodel="vm.model"></file-uploader>
+                        <div class="col-xs-6" style="border: grey solid thin; border-left: none;">
+                            <table style="border: 5px; height: 211px; width: 100%;">
+                                <tr>
+                                    <td style="height: 70px; text-align: center;">
+                                        <div class="btn btn-primary" ng-class="{'active':currentAction.assignedToTestCentre==true}" ng-disabled="actionFormMode !== 'create'" ng-model="currentAction.assignedToTestCentre" ng-click="currentAction.assignedToTestCentre=true; clearSelectedUsers();" btn-radio="true">Test Centre</div>
+                                    </td>
+                                    <td style="height: 70px; text-align: center;">
+                                        <div class="btn btn-primary" ng-class="{'active':currentAction.assignedToTestCentre==false}" ng-disabled="actionFormMode !== 'create'" ng-model="currentAction.assignedToTestCentre" ng-click="currentAction.assignedToTestCentre=false" btn-radio="false">Individuals</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label class="control-label" for="users" name="users" ng-class="{invalid: actionForm.$error.userSelection != undefined}">Users</label>
+                                        <select id="users" name="users" kendo-multi-select k-options="userSelection" k-ng-model="currentAction.assignedToIndividuals" ng-disabled="currentAction.assignedToTestCentre || actionFormMode !== 'create';" ng-required="currentAction.assignedToTestCentre == false"></select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row top-buffer">
+                        <label class="control-label" for="description" name="description" ng-class="{invalid: actionForm.description.$error.required}">Description</label>
+                        <textarea id="description" name="description" rows="8" class="actionDescription col-xs-12" ng-disabled="actionFormMode === 'response'" ng-model="currentAction.actionDescription" required></textarea>
+                    </div>
+                    <div class="row top-buffer">
+                        <label class="control-label" for="response" name="response" ng-class="{invalid: actionForm.response.$error.required}">Response</label>
+                        <textarea id="response" name="response" rows="8" class="actionResponse col-xs-12" ng-disabled="actionFormMode !== 'response'" ng-model="currentAction.actionResponse" ng-required="actionFormMode === 'response'"></textarea>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="commands" style="position: fixed;">
+                <div class="container">
+                    <div class="col-lg-12">
+                        <button class="btn btn-info btn-lg" ng-click="saveNClose('win1')" ng-show="actionFormMode === 'create'" ng-disabled="actionForm.$pristine">Assign Action</button>
+                        <button class="btn btn-info btn-lg" ng-click="saveNClose('win1')" ng-show="actionFormMode === 'update'" ng-disabled="actionForm.$pristine">Update Action</button>
+                        <button class="btn btn-info btn-lg" ng-click="saveNClose('win1')" ng-show="actionFormMode === 'response'" ng-disabled="actionForm.$pristine">Submit Response</button>
+
+                        <button class="btn btn-warning btn-cancel btn-lg" ng-click="closeActionForm(); clearCurrentAction();">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+}

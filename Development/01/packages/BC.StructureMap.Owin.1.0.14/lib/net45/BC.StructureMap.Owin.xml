@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BC.StructureMap.Owin</name>
+    </assembly>
+    <members>
+        <member name="T:BC.StructureMap.Owin.OwinDependencyScopeHandler">
+            <summary>
+            This ensures the dependency resolver that WebApi uses to resolve the controller for a request is going to be the one that 
+            uses the NestedContainer created by Owin for that same web request
+            </summary>
+        </member>
+        <member name="T:BC.StructureMap.Owin.StructureMapWebApiOwinDependencyResolver">
+            <summary>
+            The structure map dependency resolver.
+            </summary>
+        </member>
+        <member name="M:BC.StructureMap.Owin.StructureMapWebApiOwinDependencyResolver.BeginScope">
+            <summary>
+            The begin scope.
+            The request container should already have been created by the relevant Owin Middleware <see cref="T:BC.StructureMap.Owin.StructureMapOwinMiddleware"/> 
+            and placed in the Owin Request context which is availavble from HttpCo
+            </summary>
+            <returns>
+            The System.Web.Http.Dependencies.IDependencyScope.
+            </returns>
+        </member>
+    </members>
+</doc>
